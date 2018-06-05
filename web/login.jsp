@@ -9,12 +9,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="main.css">
-        <title>JSP Page</title>
+        <title>login page</title>
     </head>
     <body>
-        <h1>Hello to Almaty, from Astana!</h1>
-       <input type="text" name="login" value="login"><br>
-       <input type="text" name="password" value=password><br>
-        <input type="submit" value="Submit">  
+        <div align="center">
+             <h1>welcome to digital photo album</h1>
+        </div>
+        <div class="login-page">
+            <div class="form">
+                <form class="register-form">
+                    <input type="text" placeholder="name"/>
+                    <input type="password" placeholder="password"/>
+                    <input type="text" placeholder="email address"/>
+                    <button>create</button>
+                    <p class="message">Already registered? <a href="#">Sign In</a></p>
+                </form>
+                <form class="login-form">
+                    <input type="text" placeholder="username"/>
+                    <input type="password" placeholder="password"/>
+                    <button>login</button>                    
+                </form>
+            </div>
+        </div>
     </body>
 </html>
