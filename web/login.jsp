@@ -1,9 +1,4 @@
-<%-- 
-    
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%System.out.println("hello");%>
 <!DOCTYPE html>
 <html>
     <head>
