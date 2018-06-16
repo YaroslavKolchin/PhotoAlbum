@@ -21,26 +21,26 @@
                     </div>
                 <div id="gallery">
                     <ul>
-                        <li><a href="#"><img src="images/pic1.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic2.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic3.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic1.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic1.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic2.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic10.jpg" alt=""  height="80" width="120"/></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic1.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
                         <li><a href="#"><img src="images/pic4.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
                         <li><a href="#"><img src="images/pic3.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
                         <li><a href="#"><img src="images/pic5.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic1.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic2.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic1.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic1.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic1.jpg" alt=""  height="80" width="120"/></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic2.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic1.jpg" alt=""  height="80" width="120"/></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic1.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
                         <li><a href="#"><img src="images/pic4.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic1.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic1.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
                         <li><a href="#"><img src="images/pic5.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic1.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic2.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic1.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic2.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
                         <li><a href="#"><img src="images/pic5.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
                         <li><a href="#"><img src="images/pic4.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
                         <li><a href="#"><img src="images/pic3.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
-                        <li><a href="#"><img src="images/pic1.jpg" alt="" /></a><br /><a href="#">Name Photo</a></li>
+                        <li><a href="#"><img src="images/pic1.jpg" alt="" height="80" width="120" /></a><br /><a href="#">Name Photo</a></li>
                     </ul>
                 </div>
             </div>

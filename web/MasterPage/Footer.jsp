@@ -8,9 +8,9 @@
 <div id="footer">
             <div id="inside_footer">
                 <ul id="bottom_menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index2.html">Gallery</a></li>
-                    <li><a href="index3.html">About Me</a></li>
+                    <li><a href="HomePage.jsp">Home</a></li>
+                    <li><a href="Gallery.jsp">Gallery</a></li>
+                    <li><a href="AboutMe.jsp">About Me</a></li>
                     <li><a href="index3.html">Video</a></li>
                     <li><a href="index3.html">Partners</a></li>
                     <li><a href="index3.html">Guest-Book</a></li>
