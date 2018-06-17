@@ -3,8 +3,17 @@
     Created on : Jun 16, 2018, 4:53:25 AM
     Author     : talgat
 --%>
-
+<%
+    if(session.getAttribute("session")== null || session.getAttribute("session").equals("") || !session.getAttribute("session").equals("TRUE"))
+    {
+        System.out.println("SESSION: "+session.getAttribute("session"));
+%>
+        <jsp:forward page="../error.jsp" />
+<%         
+    }
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
