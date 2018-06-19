@@ -13,6 +13,6 @@
     </head>
     <body>
         <h1>You are not authorized</h1>
-        <a href="http://localhost:8080/web/login.jsp">login page</a>
+        <a href="login.jsp">login page</a>
     </body>
 </html>
