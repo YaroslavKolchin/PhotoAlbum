@@ -22,19 +22,43 @@
                             <img class="mySlides" src="images/pic1_2.jpg"  style="width:100%">
                             <img class="mySlides" src="images/pic1_3.jpg"  style="width:100%">
                             <img class="mySlides" src="images/pic1_4.jpg"  style="width:100%">
+                            <img class="mySlides" src="images/pic1_5.jpg"  style="width:100%">
+                            <img class="mySlides" src="images/pic1_6.jpg"  style="width:100%">
+                            <img class="mySlides" src="images/pic1_7.jpg"  style="width:100%">
+                            <img class="mySlides" src="images/pic1_8.jpg"  style="width:100%">
+                            <img class="mySlides" src="images/pic1_9.jpg"  style="width:100%">
+                            <img class="mySlides" src="images/pic1_10.jpg"  style="width:100%">
 
                 <div class="w3-row-padding w3-section">
-                    <div class="w3-col s3">
+                    <div class="w3-col s1">
                          <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_1.jpg" style="width:100%" height="40" onclick="currentDiv(1)">
                     </div>
-                    <div class="w3-col s3">
+                    <div class="w3-col s1">
                         <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_2.jpg" style="width:100%" height="40" onclick="currentDiv(2)">
                     </div>
-                    <div class="w3-col s3">
+                    <div class="w3-col s1">
                          <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_3.jpg" style="width:100%" height="40" onclick="currentDiv(3)">
                     </div>
-                    <div class="w3-col s3">
+                    <div class="w3-col s1">
                          <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_4.jpg" style="width:100%" height="40" onclick="currentDiv(4)">
+                    </div>
+                    <div class="w3-col s1">
+                         <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_5.jpg" style="width:100%" height="40" onclick="currentDiv(5)">
+                    </div>
+                    <div class="w3-col s1">
+                        <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_6.jpg" style="width:100%" height="40" onclick="currentDiv(6)">
+                    </div>
+                    <div class="w3-col s1">
+                         <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_7.jpg" style="width:100%" height="40" onclick="currentDiv(7)">
+                    </div>
+                    <div class="w3-col s1">
+                         <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_8.jpg" style="width:100%" height="40" onclick="currentDiv(8)">
+                    </div>
+                    <div class="w3-col s1">
+                         <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_9.jpg" style="width:100%" height="40" onclick="currentDiv(9)">
+                    </div>
+                    <div class="w3-col s1">
+                         <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_10.jpg" style="width:100%" height="40" onclick="currentDiv(10)">
                     </div>
                 </div>
                     </div>
