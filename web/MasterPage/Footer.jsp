@@ -11,7 +11,7 @@
                     <li><a href="HomePage.jsp">Home</a></li>
                     <li><a href="Gallery.jsp">Gallery</a></li>
                     <li><a href="AboutMe.jsp">About Me</a></li>
-                    <li><a href="index3.html">Video</a></li>
+                    <li><a href=logout.jsp>Video</a></li>
                     <li><a href="index3.html">Partners</a></li>
                     <li><a href="index3.html">Guest-Book</a></li>
                     <li><a href="index3.html">Contact Me</a></li>
