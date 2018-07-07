@@ -5,26 +5,40 @@
  */
 package db;
 
-  import java.sql.Connection;
-  import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 
 public class DB {
-  public void dbConnection() throws Exception {
-    String driver = "com.mysql.jdbc.Driver";
-    String connection = "jdbc:mysql://localhost:3306/AlbumsDB";
-    String user = "root";
-    String password = "12345";
-    Class.forName(driver);
-    Connection con = DriverManager.getConnection(connection, user, password);
-    Statement stmt = con.createStatement();
-    String query = "select columnname from tablename ;";
-    ResultSet rs = stmt.executeQuery(query);
-      System.out.println(rs+" !rs! ");
-    if (!con.isClosed()) {
-      con.close();
-    }
+  public void dbConnection() throws Exception, SQLException  {
+      try
+      {        
+        String driver = "com.mysql.jdbc.Driver";        
+        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+        String user = "albums_admin";
+        String password = "alBUM_2018";
+        Class.forName(driver);
+        Connection connection = DriverManager.getConnection(connectionString, user, password);
+        Statement stmt = connection.createStatement();
+        String query = "select * from USERS;";
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {           
+            int userId = rs.getInt("user_id");
+            String userName = rs.getString("user_email");
+            String userPassword = rs.getString("user_password");
+            System.out.println("id: "+userId+"; userName: "+userName+"; userPassword: "+userPassword);
+        }        
+        if (!connection.isClosed()) 
+        {
+            connection.close();
+        }
+      }
+      catch(Exception exception)
+      {
+          exception.printStackTrace();
+      }
   }
 }
