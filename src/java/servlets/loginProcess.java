@@ -5,8 +5,11 @@
  */
 package servlets;
 
+import db.DB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -70,8 +73,13 @@ public class loginProcess extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
+            throws ServletException, IOException  {
+        DB d=new DB();
+        try {
+            d.dbConnection();
+        } catch (Exception ex) {
+            System.out.println("ex "+ex);
+        }
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         if(email.equals("email") && password.equals("12345"))
