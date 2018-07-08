@@ -4,9 +4,17 @@
         <servlet-name>loginProcess</servlet-name>
         <servlet-class>servlets.loginProcess</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>imageServlet</servlet-name>
+        <servlet-class>servlets.imageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>loginProcess</servlet-name>
         <url-pattern>/loginProcess</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>imageServlet</servlet-name>
+        <url-pattern>/imageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
