@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlets;
 
 import db.DB;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,9 +22,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author talgat
+ * @author yaroslav
  */
-public class loginProcess extends HttpServlet {
+@WebServlet(name = "AlbumAdd", urlPatterns = {"/AlbumAdd"})
+public class AlbumAdd extends HttpServlet {
+    private String encoding = "UTF-8";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +45,10 @@ public class loginProcess extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet loginProcess</title>");            
+            out.println("<title>Servlet AlbumAdd</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet loginProcess at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AlbumAdd at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,8 +66,26 @@ public class loginProcess extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+         request.setCharacterEncoding(encoding);
+        response.setCharacterEncoding(encoding);
+        
+        String filePath = "/home/PhotoAlbum/User/Email/AlbumName/1.jpg";
+        response.setContentType("image/jpg");
+        ServletOutputStream stream = response.getOutputStream();
+        FileInputStream fis = new FileInputStream(filePath);
+        BufferedInputStream bin = new BufferedInputStream(fis);  
+        BufferedOutputStream bout = new BufferedOutputStream(stream);  
+        int ch = 0;
+        while((ch = bin.read())!=-1)  
+        {  
+            bout.write(ch);
+        } 
+        bin.close();  
+        fis.close();  
+        bout.close();  
+        stream.close(); 
     }
+    
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -71,38 +97,41 @@ public class loginProcess extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException  {
-        int rows=0;
-       String email = "";
-       String pass = "";
-       if(request.getParameter("email")!=null)
-         email=request.getParameter("email");       
-        if(request.getParameter("password")!=null)
-            pass=request.getParameter("password");
-        System.out.println("email "+email+" password "+pass);
-        if(email.length()>2 && pass.length()>4)
+            throws ServletException, IOException {
+         
+        String name="";
+       if(request.getParameter("album_name")!=null)
+         name=request.getParameter("album_name");
+        String description = "";
+        if(request.getParameter("album_description")!=null)
+            description=request.getParameter("album_description");
+        System.out.println("name "+name+" description "+description);
+        if(name.length()>2 && description.length()>5)
         {
             DB d=new DB();       
         try {
-              rows=d.dbAuthorisation(email,pass);
+            
+            HttpSession session = request.getSession(true);
+            String owner="2018";
+            if(session.getAttribute("album_owner_id")!=null)
+            {
+                owner= session.getAttribute("album_owner_id").toString();  
             }
-       catch (Exception ex) {
+            System.out.println("success "+owner);
+            d.dbAlbumAdd(name,description,owner);
+            System.out.println("album add ok");
+        } catch (Exception ex) {
             System.out.println("ex: "+ex);
-        }     
-        if(rows!=0)
-        {
-            HttpSession session = request.getSession(true); 
-            session.setAttribute("session","TRUE");
-            session.setAttribute("album_owner_id",rows);
-            response.sendRedirect("HomePage.jsp");
+        } 
         }
         else
-        {   
-             System.out.println("wrong email or password");
-             response.sendRedirect("login.jsp");
+        {
+            System.out.println("album wasn't created");    
         }
-            processRequest(request, response);
-        }
+        
+       
+       
+        processRequest(request, response);
     }
 
     /**
