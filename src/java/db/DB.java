@@ -70,7 +70,8 @@ public class DB {
       }
   }
     public void dbAlbumAdd(String name,String description,String owner) throws Exception, SQLException  {
-      try
+      
+        try
       { 
         java.util.Date dt = new java.util.Date(); 
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -102,4 +103,41 @@ public class DB {
           exception.printStackTrace();
       }
     }
+    public void dbMyalbums(String owner) throws Exception, SQLException  {
+      String rows="0";
+      String name="a";
+      String des="b";
+      String data="c";
+        try
+      { 
+        /*java.util.Date dt = new java.util.Date(); 
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(dt);*/
+        String driver = "com.mysql.jdbc.Driver";        
+        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+        String user = "albums_admin";
+        String pass = "alBUM_2018";
+        Class.forName(driver);
+        Connection connection = DriverManager.getConnection(connectionString, user, pass);
+        Statement stmt = connection.createStatement();
+        String query = "SELECT album_name,album_description,album_date_create FROM ALBUMS WHER album_owner_id="+owner; 
+        ResultSet rs = stmt.executeQuery(query);
+          System.out.println("myalbums");
+        while (rs.next()) {           
+             name = rs.getString("album_name");  
+             des = rs.getString("album_description"); 
+             data = rs.getString("album_date_create"); 
+              System.out.println("name "+name+" decscription "+des+" date "+data);
+        } 
+        if (!connection.isClosed()) 
+        {
+            connection.close();
+        }
+         
+      }
+      catch(Exception exception)
+      {
+          exception.printStackTrace();
+      }
+  }
 }
