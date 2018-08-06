@@ -120,7 +120,7 @@ public class DB {
         Class.forName(driver);
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         Statement stmt = connection.createStatement();
-        String query = "SELECT album_name,album_description,album_date_create FROM ALBUMS WHER album_owner_id="+owner; 
+        String query = "SELECT album_name,album_description,album_date_create FROM ALBUMS WHERE album_owner_id='"+owner+"'"; 
         ResultSet rs = stmt.executeQuery(query);
           System.out.println("myalbums");
         while (rs.next()) {           
