@@ -1,8 +1,9 @@
 <%-- 
-    Document   : myAlbums
-    Created on : Aug 6, 2018, 12:38:22 AM
-    Author     : yaroslav
+    Document   : MyAlbumsList
+    Created on : Aug 6, 2018, 11:45:46 AM
+    Author     : talgat
 --%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -11,7 +12,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Calling My Album</h1>
-        <jsp:include page="/albumsServlet"/>
+        <h1>My Albums List</h1>
+        <p>${albumsList}</p>
     </body>
 </html>
