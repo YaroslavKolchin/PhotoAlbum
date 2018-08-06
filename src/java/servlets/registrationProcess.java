@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package servlets;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import db.DB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author talgat
+ * @author yaroslav
  */
-public class imageServlet extends HttpServlet {
-    private String encoding = "UTF-8";
+public class registrationProcess extends HttpServlet {
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,10 +38,10 @@ public class imageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet imageServlet</title>");            
+            out.println("<title>Servlet registrationProcess</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet imageServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet registrationProcess at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,24 +59,7 @@ public class imageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding(encoding);
-        response.setCharacterEncoding(encoding);
-        
-        String filePath = "/home/PhotoAlbum/User/Email/AlbumName/1.jpg";
-        response.setContentType("image/jpg");
-        ServletOutputStream stream = response.getOutputStream();
-        FileInputStream fis = new FileInputStream(filePath);
-        BufferedInputStream bin = new BufferedInputStream(fis);  
-        BufferedOutputStream bout = new BufferedOutputStream(stream);  
-        int ch = 0;
-        while((ch = bin.read())!=-1)  
-        {  
-            bout.write(ch);
-        } 
-        bin.close();  
-        fis.close();  
-        bout.close();  
-        stream.close(); 
+        processRequest(request, response);
     }
 
     /**
@@ -89,8 +71,30 @@ public class imageServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+   protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException  {
+       String email="";
+       if(request.getParameter("email")!=null)
+         email=request.getParameter("email");
+        String password = "";
+        if(request.getParameter("password")!=null)
+            password=request.getParameter("password");
+        System.out.println("email "+email+" password "+password);
+        if(email.length()>2 && password.length()>5)
+        {
+            DB d=new DB();       
+        try {
+            d.dbRegistration(email,password);
+        } catch (Exception ex) {
+            System.out.println("ex: "+ex);
+        } 
+        }
+        else
+        {
+            response.sendRedirect("error.jsp");
+        }
+        response.sendRedirect("login.jsp");
+       
         processRequest(request, response);
     }
 
