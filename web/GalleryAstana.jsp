@@ -46,9 +46,6 @@
                          <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_5.jpg" style="width:100%" height="40" onclick="currentDiv(5)">
                     </div>
                     <div class="w3-col s1">
-                        <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_6.jpg" style="width:100%" height="40" onclick="currentDiv(6)">
-                    </div>
-                    <div class="w3-col s1">
                          <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_7.jpg" style="width:100%" height="40" onclick="currentDiv(7)">
                     </div>
                     <div class="w3-col s1">
