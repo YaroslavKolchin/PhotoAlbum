@@ -17,8 +17,8 @@ public class DB {
   public int dbAuthorisation(String email,String pass) throws Exception, SQLException  {
       int rows=0;
       try
-      {        
-        String driver = "com.mysql.jdbc.Driver";        
+      {
+        String driver = "com.mysql.jdbc.Driver";
         String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
         String user = "albums_admin";
         String password = "alBUM_2018";
@@ -27,16 +27,16 @@ public class DB {
         Statement stmt = connection.createStatement();
         String query = "SELECT * FROM USERS WHERE user_email='"+email+"' AND user_password='"+pass+"';";
         ResultSet rs = stmt.executeQuery(query);
-        
-        while (rs.next()) {           
-             rows = rs.getInt(1);        
-        } 
+
+        while (rs.next()) {
+             rows = rs.getInt(1);
+        }
         System.out.println("rows: "+rows);
-        if (!connection.isClosed()) 
-        {      
+        if (!connection.isClosed())
+        {
             connection.close();
         }
-        
+
       }
       catch(Exception exception)
       {
@@ -46,20 +46,20 @@ public class DB {
   }
   public void dbRegistration(String email,String password) throws Exception, SQLException  {
       try
-      {        
-        String driver = "com.mysql.jdbc.Driver";        
+      {
+        String driver = "com.mysql.jdbc.Driver";
         String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
         String user = "albums_admin";
         String pass = "alBUM_2018";
         Class.forName(driver);
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         String query = " insert into USERS (user_email, user_password)"
-        + " values (?,?)"; 
+        + " values (?,?)";
         PreparedStatement preparedStmt = connection.prepareStatement(query);
         preparedStmt.setString (1, email);
         preparedStmt.setString (2, password);
         preparedStmt.execute();
-        if (!connection.isClosed()) 
+        if (!connection.isClosed())
         {
             connection.close();
         }
@@ -70,22 +70,22 @@ public class DB {
       }
   }
     public void dbAlbumAdd(String name,String description,String owner) throws Exception, SQLException  {
-      
+
         try
-      { 
-        java.util.Date dt = new java.util.Date(); 
+      {
+        java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(dt);
-        int owner_id=1; 
-        String path="/home/PhotoAlbum/User/Email/"+name+"/";
-        String driver = "com.mysql.jdbc.Driver";        
+        int owner_id=1;
+        String path="/PhotoAlbum/owner/"+name+"/";
+        String driver = "com.mysql.jdbc.Driver";
         String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
         String user = "albums_admin";
         String pass = "alBUM_2018";
         Class.forName(driver);
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         String query = " insert into ALBUMS ( album_owner_id,album_name,album_description,album_date_create,album_path)"
-        + " values (?,?,?,?,?)"; 
+        + " values (?,?,?,?,?)";
         PreparedStatement preparedStmt = connection.prepareStatement(query);
         preparedStmt.setInt (1, owner_id);
         preparedStmt.setString (2, name);
@@ -93,7 +93,7 @@ public class DB {
         preparedStmt.setString (4, date);
         preparedStmt.setString (5, path);
         preparedStmt.execute();
-        if (!connection.isClosed()) 
+        if (!connection.isClosed())
         {
             connection.close();
         }
@@ -109,31 +109,31 @@ public class DB {
       String des="b";
       String data="c";
         try
-      { 
-        /*java.util.Date dt = new java.util.Date(); 
+      {
+        /*java.util.Date dt = new java.util.Date();
         java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String date = sdf.format(dt);*/
-        String driver = "com.mysql.jdbc.Driver";        
+        String driver = "com.mysql.jdbc.Driver";
         String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
         String user = "albums_admin";
         String pass = "alBUM_2018";
         Class.forName(driver);
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         Statement stmt = connection.createStatement();
-        String query = "SELECT album_name,album_description,album_date_create FROM ALBUMS WHERE album_owner_id='"+owner+"'"; 
+        String query = "SELECT album_name,album_description,album_date_create FROM ALBUMS WHERE album_owner_id='"+owner+"'";
         ResultSet rs = stmt.executeQuery(query);
           System.out.println("myalbums");
-        while (rs.next()) {           
-             name = rs.getString("album_name");  
-             des = rs.getString("album_description"); 
-             data = rs.getString("album_date_create"); 
+        while (rs.next()) {
+             name = rs.getString("album_name");
+             des = rs.getString("album_description");
+             data = rs.getString("album_date_create");
               System.out.println("name "+name+" decscription "+des+" date "+data);
-        } 
-        if (!connection.isClosed()) 
+        }
+        if (!connection.isClosed())
         {
             connection.close();
         }
-         
+
       }
       catch(Exception exception)
       {

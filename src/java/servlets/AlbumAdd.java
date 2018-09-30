@@ -9,6 +9,7 @@ package servlets;
 import db.DB;
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -45,7 +46,7 @@ public class AlbumAdd extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AlbumAdd</title>");            
+            out.println("<title>Servlet AlbumAdd</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet AlbumAdd at " + request.getContextPath() + "</h1>");
@@ -68,24 +69,24 @@ public class AlbumAdd extends HttpServlet {
             throws ServletException, IOException {
          request.setCharacterEncoding(encoding);
         response.setCharacterEncoding(encoding);
-        
+
         String filePath = "/home/PhotoAlbum/User/Email/AlbumName/1.jpg";
         response.setContentType("image/jpg");
         ServletOutputStream stream = response.getOutputStream();
         FileInputStream fis = new FileInputStream(filePath);
-        BufferedInputStream bin = new BufferedInputStream(fis);  
-        BufferedOutputStream bout = new BufferedOutputStream(stream);  
+        BufferedInputStream bin = new BufferedInputStream(fis);
+        BufferedOutputStream bout = new BufferedOutputStream(stream);
         int ch = 0;
-        while((ch = bin.read())!=-1)  
-        {  
+        while((ch = bin.read())!=-1)
+        {
             bout.write(ch);
-        } 
-        bin.close();  
-        fis.close();  
-        bout.close();  
-        stream.close(); 
+        }
+        bin.close();
+        fis.close();
+        bout.close();
+        stream.close();
     }
-    
+
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -98,7 +99,7 @@ public class AlbumAdd extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+
         String name="";
        if(request.getParameter("album_name")!=null)
          name=request.getParameter("album_name");
@@ -108,29 +109,79 @@ public class AlbumAdd extends HttpServlet {
         System.out.println("name "+name+" description "+description);
         if(name.length()>2 && description.length()>5)
         {
-            DB d=new DB();       
-        try {
-            
             HttpSession session = request.getSession(true);
             String owner="2018";
             if(session.getAttribute("album_owner_id")!=null)
             {
-                owner= session.getAttribute("album_owner_id").toString();  
+                owner= session.getAttribute("album_owner_id").toString(); 
             }
-            System.out.println("success "+owner);
-            d.dbAlbumAdd(name,description,owner);
-            System.out.println("album add ok");
-        } catch (Exception ex) {
-            System.out.println("ex: "+ex);
-        } 
+            //start writing on system new folder
+            String userDirectory=System.getProperty("user.home");
+           
+            //File theDir = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+name);
+            File ownerDirectory = new File(userDirectory+"/PhotoAlbum/"+owner);
+            File albumDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+name);
+            if (!ownerDirectory.exists()) 
+            {
+                System.out.println("creating username directory: " + ownerDirectory.getName());
+                boolean resultOwner = false;
+                try
+                {
+                    ownerDirectory.mkdir();
+                    resultOwner = true;
+                }
+                catch(SecurityException se){}       
+                if(resultOwner) 
+                {          
+                 boolean resultAlbum = false;
+                 try
+                 {
+                    albumDirectory.mkdir();
+                    resultAlbum = true;
+                 }
+                 catch(SecurityException se){}       
+                 if(resultAlbum && resultOwner) 
+                 {  
+                    System.out.println("creating albumDirectory (album and user created) directory: " + albumDirectory.getName());
+                    System.out.println("created 1 "+albumDirectory.getPath()+"exist 1 "+albumDirectory.getAbsolutePath());
+                 }
+                }
+            }
+            else
+            {
+                boolean resultAlbum = false;
+                try
+                {
+                    albumDirectory.mkdir();
+                    resultAlbum = true;
+                }
+                catch(SecurityException se){}       
+                if(resultAlbum) 
+                {  
+                    System.out.println("creating albumDirectory (when user is created) directory: " + albumDirectory.getName());
+                    System.out.println("created 2 "+albumDirectory.getPath()+"exist 2 "+albumDirectory.getAbsolutePath());
+                }
+            }
+                //start writing on db
+                    DB d=new DB();      
+                try 
+                {
+                    System.out.println("success "+owner);
+                    d.dbAlbumAdd(name,description,owner);
+                    System.out.println("in db album add ok");
+                } 
+                catch (Exception ex) 
+                {
+                    System.out.println("ex: "+ex);
+                }
         }
         else
         {
-            System.out.println("album wasn't created");    
+            System.out.println("album wasn't created");
         }
-        
-       
-       
+
+
+
         processRequest(request, response);
     }
 
