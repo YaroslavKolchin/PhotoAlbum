@@ -65,7 +65,7 @@ public class albumsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        /*
+        
         HttpSession session = request.getSession(true);
         String owner = "1";
         if(session.getAttribute("album_owner_id")!=null)
@@ -87,7 +87,7 @@ public class albumsServlet extends HttpServlet {
         {
             System.out.println("album wasn't created");    
         }
-        */
+        
         //System.out.println("GET MM");
         String albums = "test album 2018";
         request.setAttribute("albumsList", albums);        
