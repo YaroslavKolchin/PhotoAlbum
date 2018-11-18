@@ -163,10 +163,10 @@ public class AlbumAdd extends HttpServlet {
                 }
             }
                 //start writing on db
-                    DB d=new DB();      
+                DB d = new DB();      
                 try 
                 {
-                    System.out.println("success "+owner);
+                    System.out.println("success for add album "+owner);
                     d.dbAlbumAdd(name,description,owner);
                     System.out.println("in db album add ok");
                 } 

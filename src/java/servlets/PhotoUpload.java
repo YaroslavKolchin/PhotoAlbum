@@ -6,31 +6,34 @@
 
 package servlets;
 
-import db.DB;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
+import java.nio.file.Paths;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+@MultipartConfig( fileSizeThreshold = 1024 * 1024 * 1,
+maxFileSize = 1024 * 1024 * 10, 
+maxRequestSize = 1024 * 1024 * 15, 
+location = "/home" )
 
 /**
  *
  * @author yaroslav
  */
-@WebServlet(name = "MyAlbums", urlPatterns = {"/MyAlbums"})
-public class albumsServlet extends HttpServlet {
-   
+
+@WebServlet(name = "PhotoUpload", urlPatterns = {"/PhotoUpload"})
+public class PhotoUpload extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,21 +45,20 @@ public class albumsServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) 
-        {
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MyAlbums</title>");            
+            out.println("<title>Servlet PhotoUpload</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet MyAlbums at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PhotoUpload at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
-        }        
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -70,54 +72,8 @@ public class albumsServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
-        Map<Integer,String> albumNamesMap = new HashMap<Integer,String>();
-        
-        HttpSession session = request.getSession(true);
-        String owner = "1";
-        int id=1;
-        if(session.getAttribute("album_owner_id")!=null)
-        {
-            System.out.println("session "+session.getAttribute("album_owner_id").toString());
-            owner = session.getAttribute("album_owner_id").toString();
-        }
-        System.out.println("owner "+owner);
-        if(owner!=null)
-        {
-            DB d = new DB();
-            
-            try {
-                System.out.println("success "+owner);
-                albumNamesMap=d.dbOwnerAlbums(owner);
-                /*
-                Set<Integer> key =  albumNamesMap.keySet();
-                Iterator<Integer> it = key.iterator();             
-                if(key.size()>1)
-                {
-                    while(it.hasNext())
-                    {
-                        System.out.println("album list id"+it.next()+"; name: "+albumNamesMap.get(it.next()));
-                    }
-                }
-                */
-            } catch (Exception ex) {
-                System.out.println("ex: "+ex);
-            }     
-        }
-        else
-        {
-            System.out.println(" created");    
-        }
-        
-        //System.out.println("GET MM");
-        //String albums = "test album 2018";
-        
-        request.setAttribute("albums",albumNamesMap);        
-        ServletContext sc = this.getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/PhotoAddtest.jsp");
-        rd.include(request, response); 
-        
+            throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**
@@ -132,6 +88,41 @@ public class albumsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+         String name="";
+       if(request.getParameter("photo_name")!=null)
+         name=request.getParameter("photo_name");
+        String description = "";
+        if(request.getParameter("photo_description")!=null)
+            description=request.getParameter("photo_description");
+        String photoAlbum="";
+        photoAlbum=request.getParameter("albums");
+        Part image=request.getPart("f");
+        String fileName=Paths.get(image.getSubmittedFileName()).getFileName().toString();
+        
+        HttpSession session = request.getSession(true);
+        System.out.println("photo name "+name+" photo description "+description+" album "+photoAlbum+" file name "+fileName );
+
+        if(name.length()>2 && description.length()>5)
+        {            
+            String owner="2018";
+            if(session.getAttribute("album_owner_id")!=null)
+            {
+                owner= session.getAttribute("album_owner_id").toString(); 
+            }
+        }
+     
+        String owner = "1";
+        
+        int id=1;
+        if(session.getAttribute("album_owner_id")!=null)
+        {
+            System.out.println("session "+session.getAttribute("album_owner_id").toString());
+            owner = session.getAttribute("album_owner_id").toString();
+        }
+        File imageFile = new File(System.getProperty("user.home")+"/PhotoAlbum/"+owner+"/"+name+"/"+fileName);      
+        //System.out.println("path "+imageFile.toString() );
+        image.write(fileName);
+        System.out.println("owner "+owner);
     }
 
     /**
