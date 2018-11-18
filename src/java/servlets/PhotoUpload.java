@@ -7,9 +7,16 @@
 package servlets;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.nio.file.FileAlreadyExistsException;
+import static java.nio.file.Files.newOutputStream;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.nio.file.StandardOpenOption;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -18,21 +25,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+/*
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
+*/
+/*
 @MultipartConfig( fileSizeThreshold = 1024 * 1024 * 1,
 maxFileSize = 1024 * 1024 * 10, 
 maxRequestSize = 1024 * 1024 * 15, 
-location = "/home" )
-
+location = "/h" )
+*/
 /**
  *
  * @author yaroslav
  */
 
 @WebServlet(name = "PhotoUpload", urlPatterns = {"/PhotoUpload"})
+@MultipartConfig()
 public class PhotoUpload extends HttpServlet {
 
     /**
@@ -97,7 +107,7 @@ public class PhotoUpload extends HttpServlet {
         String photoAlbum="";
         photoAlbum=request.getParameter("albums");
         Part image=request.getPart("f");
-        String fileName=Paths.get(image.getSubmittedFileName()).getFileName().toString();
+        String fileName = Paths.get(image.getSubmittedFileName()).getFileName().toString();
         
         HttpSession session = request.getSession(true);
         System.out.println("photo name "+name+" photo description "+description+" album "+photoAlbum+" file name "+fileName );
@@ -119,10 +129,14 @@ public class PhotoUpload extends HttpServlet {
             System.out.println("session "+session.getAttribute("album_owner_id").toString());
             owner = session.getAttribute("album_owner_id").toString();
         }
-        File imageFile = new File(System.getProperty("user.home")+"/PhotoAlbum/"+owner+"/"+name+"/"+fileName);      
+        InputStream fileContent = image.getInputStream();
+        File imageFile = new File(System.getProperty("user.home")+"/PhotoAlbum/"+owner+"/"+photoAlbum+"/"+fileName);
+        java.nio.file.Files.copy(fileContent, imageFile.toPath(), StandardCopyOption.REPLACE_EXISTING);        
+        fileContent.close();
         //System.out.println("path "+imageFile.toString() );
-        image.write(fileName);
-        System.out.println("owner "+owner);
+        //OutputStream os = new FileOutputStream(imageFile);
+        //image.write(fileName);
+        System.out.println("finished uploading a file");
     }
 
     /**

@@ -63,7 +63,7 @@ public class imageServlet extends HttpServlet {
         request.setCharacterEncoding(encoding);
         response.setCharacterEncoding(encoding);
         
-        String filePath = "/home/PhotoAlbum/User/Email/AlbumName/1.jpg";
+        String filePath = "/home/talgat/email/albumName/1.jpg";
         response.setContentType("image/jpg");
         ServletOutputStream stream = response.getOutputStream();
         FileInputStream fis = new FileInputStream(filePath);
@@ -73,11 +73,11 @@ public class imageServlet extends HttpServlet {
         while((ch = bin.read())!=-1)  
         {  
             bout.write(ch);
-        } 
-        bin.close();  
-        fis.close();  
-        bout.close();  
-        stream.close(); 
+        }
+        bin.close();
+        fis.close();
+        bout.close();
+        stream.close();
     }
 
     /**
