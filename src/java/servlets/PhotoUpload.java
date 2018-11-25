@@ -6,6 +6,7 @@
 
 package servlets;
 
+import db.DB;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -105,7 +106,7 @@ public class PhotoUpload extends HttpServlet {
         if(request.getParameter("photo_description")!=null)
             description=request.getParameter("photo_description");
         String photoAlbum="";
-        photoAlbum=request.getParameter("albums");
+        photoAlbum=request.getParameter("album_key");
         Part image=request.getPart("f");
         String fileName = Paths.get(image.getSubmittedFileName()).getFileName().toString();
         
@@ -137,6 +138,18 @@ public class PhotoUpload extends HttpServlet {
         //OutputStream os = new FileOutputStream(imageFile);
         //image.write(fileName);
         System.out.println("finished uploading a file");
+        DB d = new DB();      
+                try 
+                {
+                    //String name,String description,String owner,String album
+                    System.out.println("success for Photo Upload "+owner);
+                    d.dbPhotoUpload(name,description,owner,photoAlbum);
+                    System.out.println("in db Photo Upload ok");
+                } 
+                catch (Exception ex) 
+                {
+                    System.out.println("ex: "+ex);
+                }
     }
 
     /**

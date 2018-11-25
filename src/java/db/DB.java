@@ -75,8 +75,8 @@ public class DB {
           exception.printStackTrace();
       }
   }
-    public void dbAlbumAdd(String name,String description,String owner) throws Exception, SQLException  {
-
+    public long dbAlbumAdd(String name,String description,String owner) throws Exception, SQLException  {
+        long album_id=0;
         try
         {
         java.util.Date dt = new java.util.Date();
@@ -84,7 +84,6 @@ public class DB {
         String date = sdf.format(dt);
         String owner_id=owner;
         int own=Integer.parseInt(owner_id);
-        String path="/PhotoAlbum/"+owner+"/"+name+"/";
         String driver = "com.mysql.jdbc.Driver";
         String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
         String user = "albums_admin";
@@ -94,13 +93,25 @@ public class DB {
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         String query = " insert into ALBUMS ( album_owner_id,album_name,album_description,album_date_create,album_path)"
         + " values (?,?,?,?,?)";
-        PreparedStatement preparedStmt = connection.prepareStatement(query);
+        PreparedStatement preparedStmt = connection.prepareStatement(query,Statement.RETURN_GENERATED_KEYS);
         preparedStmt.setInt (1, own);
         preparedStmt.setString (2, name);
         preparedStmt.setString (3, description);
         preparedStmt.setString (4, date);
-        preparedStmt.setString (5, path);
-        preparedStmt.execute();
+        preparedStmt.setString (5, "");
+        int affectedRows = preparedStmt.executeUpdate();
+        if (affectedRows == 0) {
+            throw new SQLException("failed");
+        }
+
+        try (ResultSet generatedKeys = preparedStmt.getGeneratedKeys()) {
+            if (generatedKeys.next()) {
+              album_id = generatedKeys.getLong(1);
+            }
+            else {
+                throw new SQLException("Creating user failed, no ID obtained.");
+            }
+        }
         if (!connection.isClosed())
         {
             connection.close();
@@ -110,6 +121,32 @@ public class DB {
       {
           exception.printStackTrace();
       }
+        return album_id;
+    }
+    public void dbUpdateAlbumAdd(String path,long album_id) throws Exception, SQLException  {
+        try
+        {        
+        String driver = "com.mysql.jdbc.Driver";
+        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+        String user = "albums_admin";
+        String pass = "alBUM_2018";
+        Class.forName(driver);
+        Connection connection = DriverManager.getConnection(connectionString, user, pass);
+        String query = "update ALBUMS set album_path=? where album_id=?";
+        PreparedStatement preparedStmt = connection.prepareStatement(query);      
+        preparedStmt.setString(1, path);
+        preparedStmt.setInt(2, (int)album_id);
+        preparedStmt.executeUpdate();
+        if (!connection.isClosed())
+        {
+            connection.close();
+        }
+      }
+      catch(Exception exception)
+      {
+          exception.printStackTrace();
+      }
+
     }
     public void dbMyalbums(String owner) throws Exception, SQLException  {
       String rows="0";
@@ -185,5 +222,44 @@ public class DB {
           exception.printStackTrace();
       }
         return albumNamesMap;
+    }
+    public void dbPhotoUpload(String name,String description,String owner,String album) throws Exception, SQLException  {
+
+        try
+        {
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(dt);
+        String owner_id=owner;
+        String album_id=album;
+        int own=Integer.parseInt(owner_id);
+        int alb=Integer.parseInt(album_id);
+        String path="/PhotoAlbum/"+owner+"/"+album_id+"/";
+        String driver = "com.mysql.jdbc.Driver";
+        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+        String user = "albums_admin";
+        String pass = "alBUM_2018";
+            System.out.println("int owner "+own);
+        Class.forName(driver);
+        Connection connection = DriverManager.getConnection(connectionString, user, pass);
+        String query = " insert into PHOTO ( photo_owner_id,photo_album_id,photo_name,photo_description,photo_date_upload,photo_path)"
+        + " values (?,?,?,?,?,?)";
+        PreparedStatement preparedStmt = connection.prepareStatement(query);
+        preparedStmt.setInt (1, own);
+        preparedStmt.setInt (2, alb);
+        preparedStmt.setString (3, name);
+        preparedStmt.setString (4, description);
+        preparedStmt.setString (5, date);
+        preparedStmt.setString (6, path);
+        preparedStmt.execute();
+        if (!connection.isClosed())
+        {
+            connection.close();
+        }
+      }
+      catch(Exception exception)
+      {
+          exception.printStackTrace();
+      }
     }
 }

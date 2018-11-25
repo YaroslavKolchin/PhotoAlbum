@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -99,7 +101,7 @@ public class AlbumAdd extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        long album_id=0;
         String name="";
        if(request.getParameter("album_name")!=null)
          name=request.getParameter("album_name");
@@ -115,12 +117,24 @@ public class AlbumAdd extends HttpServlet {
             {
                 owner= session.getAttribute("album_owner_id").toString(); 
             }
+            //start writing on db
+            DB d = new DB();      
+            try 
+            {
+                System.out.println("success for add album "+owner);
+                album_id=d.dbAlbumAdd(name,description,owner);
+                System.out.println("in db album add ok");
+            } 
+            catch (Exception ex) 
+            {
+                System.out.println("ex: "+ex);
+            }
             //start writing on system new folder
             String userDirectory=System.getProperty("user.home");
            
             //File theDir = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+name);
             File ownerDirectory = new File(userDirectory+"/PhotoAlbum/"+owner);
-            File albumDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+name);
+            File albumDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+album_id);
             if (!ownerDirectory.exists()) 
             {
                 System.out.println("creating username directory: " + ownerDirectory.getName());
@@ -162,26 +176,26 @@ public class AlbumAdd extends HttpServlet {
                     System.out.println("created 2 "+albumDirectory.getPath()+"exist 2 "+albumDirectory.getAbsolutePath());
                 }
             }
-                //start writing on db
-                DB d = new DB();      
-                try 
-                {
-                    System.out.println("success for add album "+owner);
-                    d.dbAlbumAdd(name,description,owner);
-                    System.out.println("in db album add ok");
-                } 
-                catch (Exception ex) 
-                {
-                    System.out.println("ex: "+ex);
-                }
+         try 
+            {
+                System.out.println("success for add album "+owner);
+                d.dbUpdateAlbumAdd(albumDirectory.getPath(),album_id);
+                System.out.println("in db album add ok");
+            } 
+            catch (Exception ex) 
+            {
+                System.out.println("ex: "+ex);
+            }       
         }
         else
         {
             System.out.println("album wasn't created");
         }
 
-
-
+        response.sendRedirect("/web/myAlbums.jsp");
+        /*ServletContext sc = this.getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher("/myAlbums.jsp");
+        rd.include(request, response); */
         processRequest(request, response);
     }
 
