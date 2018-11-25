@@ -87,15 +87,11 @@ button:hover {
     <h1>Create album</h1>
     <p>Please fill in this form to create an album.</p>
     <hr>
-    <label for="email"><b>Name</b></label>
+    <label for="album"><b>Name</b></label>
     <input type="text" placeholder="Enter album name" name="album_name" required>
 
-    <label for="password"><b>Description</b></label>
+    <label for="description"><b>Description</b></label>
     <input type="text" placeholder="Enter Description " name="album_description" required>
-    <%
-        
-        %>
-    <input type="hidden" album_owner_id="album_%%">
     
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>

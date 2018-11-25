@@ -27,16 +27,17 @@
     <select name="albums" class="dropdown" style="float:right;">
          <option value="volvo">choose album</option> 
           <c:forEach items="${albums}" var="Map">      
-        <option key="${Map.key}"><c:out value="${Map.value}"></c:out> </option>       
-        </c:forEach>
+        <option key="${Map.key}">
+        <input type="hidden" name="album_key" value="${Map.key}">
+        <c:out value="${Map.value}"></c:out> </option>           
+          </c:forEach>
     </select>
        
-   <p><input type="file" name="f" multiple="false">
-   <input type="submit" value="upload"></p>  
-    <input type="hidden" album_owner_id="album_%%">   
+   <p><input type="file" name="f" multiple="false"> 
+    
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Add</button>
+      <button type="submit" class="signupbtn">Upload</button>
     </div>
   </div>
         </form>

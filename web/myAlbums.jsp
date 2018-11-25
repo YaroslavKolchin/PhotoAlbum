@@ -11,7 +11,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Calling My Album</h1>
-        <jsp:include page="/albumsServlet"/>
+        <h1>My Albums</h1>
+        <%//jsp:include page="/albumsServlet"/%>
     </body>
 </html>
