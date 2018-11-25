@@ -106,28 +106,17 @@ public class PhotoUpload extends HttpServlet {
         if(request.getParameter("photo_description")!=null)
             description=request.getParameter("photo_description");
         String photoAlbum="";
-        photoAlbum=request.getParameter("album_key");
+        photoAlbum=request.getParameter("albums");
         Part image=request.getPart("f");
         String fileName = Paths.get(image.getSubmittedFileName()).getFileName().toString();
         
         HttpSession session = request.getSession(true);
-        System.out.println("photo name "+name+" photo description "+description+" album "+photoAlbum+" file name "+fileName );
+        System.out.println("name: "+name+"; description: "+description+"; album: "+photoAlbum+"; file name: "+fileName );
 
-        if(name.length()>2 && description.length()>5)
-        {            
-            String owner="2018";
-            if(session.getAttribute("album_owner_id")!=null)
-            {
-                owner= session.getAttribute("album_owner_id").toString(); 
-            }
-        }
-     
         String owner = "1";
-        
-        int id=1;
         if(session.getAttribute("album_owner_id")!=null)
         {
-            System.out.println("session "+session.getAttribute("album_owner_id").toString());
+            System.out.println("session: "+session.getAttribute("album_owner_id").toString());
             owner = session.getAttribute("album_owner_id").toString();
         }
         InputStream fileContent = image.getInputStream();
