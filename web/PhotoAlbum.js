@@ -7,16 +7,8 @@
     }
     xhr.open('GET', 'myservlet', true);
     xhr.send(null);*/
-
-
-$(document).ready(function() {
-    $("a").click(function(event) {
-        //alert(event.target.id);
-    });
-});
-console.log("hello world");
-
-
-
-
-
+function openAlbum(albumId)
+{
+    console.log("albumId: "+albumId);
+}
+//console.log("hello world");

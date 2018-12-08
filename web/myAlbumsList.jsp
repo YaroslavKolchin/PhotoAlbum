@@ -12,8 +12,7 @@
 <link rel="stylesheet" href="slider.css">
 <script src="jquery.js"></script>
 <script src="PhotoAlbum.js"></script>
-<style>
-    
+<style>    
     .mySlides {display:none}
     .demo {cursor:pointer}
     .gallery{display:none}
@@ -22,13 +21,15 @@
 </style>
 <div class="container">
     <c:forEach items="${albums}" var="Map">
-       <br><a id="${Map.key}" href="#"><c:out value="${Map.value}"></c:out>                   
+       <br>
+       <a class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)" href="#">
+           <c:out value="${Map.value}"></c:out>
+       </a>                   
     </c:forEach>
 </div> 
     <div id="wrapper2">
         <div class="background">
-            <div class="black">
-                    
+            <div class="black">                    
                 <div id="gallery">
                     <div class="w3-content" style="max-width:800px">
                             <img class="mySlides" src="images/pic1_1.jpg"  style="width:100%">
@@ -41,7 +42,6 @@
                             <img class="mySlides" src="images/pic1_8.jpg"  style="width:100%">
                             <img class="mySlides" src="images/pic1_9.jpg"  style="width:100%">
                             <img class="mySlides" src="images/pic1_10.jpg"  style="width:100%">
-
                 <div class="w3-row-padding w3-section">
                     <div class="w3-col s1">
                          <img class="demo w3-opacity w3-hover-opacity-off" src="images/pic1_1.jpg" style="width:100%" height="40" onclick="currentDiv(1)">
