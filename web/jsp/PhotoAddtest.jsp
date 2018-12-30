@@ -13,7 +13,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <form action="PhotoUpload" style="border:1px solid #ccc" method="post" enctype="multipart/form-data">
+        <form action="../PhotoUpload" style="border:1px solid #ccc" method="post" enctype="multipart/form-data">
             <div class="container">
                 <h1>Add photo</h1>
                 <p>Please fill in this form to add a photo.</p>

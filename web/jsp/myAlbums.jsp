@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>  
-        <jsp:include page="/albumsServlet" />      
+        <jsp:include page="../albumsServlet" />      
     </body>
 </html>

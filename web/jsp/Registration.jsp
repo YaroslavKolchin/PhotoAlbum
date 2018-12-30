@@ -1,6 +1,6 @@
 <%-- 
-    Document   : AlbumAdd
-    Created on : Aug 1, 2018, 2:05:29 PM
+    Document   : Registration
+    Created on : Jul 21, 2018, 4:39:15 PM
     Author     : yaroslav
 --%>
 
@@ -82,20 +82,28 @@ button:hover {
 </style>
     </head>
     <body>
-        <form action="AlbumAdd" style="border:1px solid #ccc" method="post">
+        <form action="../registrationProcess" style="border:1px solid #ccc" method="post">
   <div class="container">
-    <h1>Create album</h1>
-    <p>Please fill in this form to create an album.</p>
+    <h1>Sign Up</h1>
+    <p>Please fill in this form to create an account.</p>
     <hr>
-    <label for="album"><b>Name</b></label>
-    <input type="text" placeholder="Enter album name" name="album_name" required>
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required>
 
-    <label for="description"><b>Description</b></label>
-    <input type="text" placeholder="Enter Description " name="album_description" required>
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" required>
+
+    <label for="psw-repeat"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
     
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+
+
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Create</button>
+      <button type="submit" class="signupbtn">Sign Up</button>
     </div>
   </div>
 </form>

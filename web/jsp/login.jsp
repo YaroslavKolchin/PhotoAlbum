@@ -3,7 +3,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="../css/main.css">
         <title>login page</title>
     </head>
     <body>
@@ -12,7 +12,7 @@
         </div>
         <div class="login-page">
             <div class="form">
-                <form action="loginProcess" method="post">  
+                <form action="../loginProcess" method="post">  
                     Email:<input type="text" name="email"/><br/><br/>  
                     Password:<input type="password" name="password"/><br/><br/>  
                     <input type="submit" value="login"/>

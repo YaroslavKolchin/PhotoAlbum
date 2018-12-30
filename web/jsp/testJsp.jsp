@@ -10,7 +10,7 @@
         <title>JSP Page</title>
         <%
             String imagePath = response.encodeURL(request.getContextPath()+"/imageServlet");
-        %>        
+        %>
     </head>
     <body>
         <h1>Hello World!</h1>       
