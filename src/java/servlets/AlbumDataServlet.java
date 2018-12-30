@@ -3,24 +3,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package servlets;
 
-import db.DB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author yaroslav
+ * @author talgat
  */
-public class registrationProcess extends HttpServlet {
-
+@WebServlet(name = "AlbumDataServlet", urlPatterns = {"/AlbumDataServlet"})
+public class AlbumDataServlet extends HttpServlet {
+        private String encoding = "UTF-8";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,10 +37,10 @@ public class registrationProcess extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet registrationProcess</title>");            
+            out.println("<title>Servlet AlbumDataServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet registrationProcess at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AlbumDataServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,8 +57,17 @@ public class registrationProcess extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+            throws ServletException, IOException 
+    {
+        
+        System.out.println("servlet is called from js");
+        //processRequest(request, response);
+        
+        //String result = new Gson().toJson(departmentList);
+        response.setCharacterEncoding(encoding);
+	response.setContentType("application/json");
+        String result = "hello from servlet";
+	response.getWriter().write(result);
     }
 
     /**
@@ -71,30 +79,8 @@ public class registrationProcess extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException  {
-       String email="";
-       if(request.getParameter("email")!=null)
-         email=request.getParameter("email");
-        String password = "";
-        if(request.getParameter("password")!=null)
-            password=request.getParameter("password");
-        System.out.println("email "+email+" password "+password);
-        if(email.length()>2 && password.length()>5)
-        {
-            DB d=new DB();       
-        try {
-            d.dbRegistration(email,password);
-        } catch (Exception ex) {
-            System.out.println("ex: "+ex);
-        } 
-        }
-        else
-        {
-            response.sendRedirect("jsp/error.jsp");
-        }
-        response.sendRedirect("jsp/login.jsp");
-       
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 

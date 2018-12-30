@@ -94,12 +94,12 @@ public class loginProcess extends HttpServlet {
             HttpSession session = request.getSession(true); 
             session.setAttribute("session","TRUE");
             session.setAttribute("album_owner_id",rows);
-            response.sendRedirect("HomePage.jsp");
+            response.sendRedirect("jsp/HomePage.jsp");
         }
         else
         {   
              System.out.println("wrong email or password");
-             response.sendRedirect("login.jsp");
+             response.sendRedirect("jsp/login.jsp");
         }
             processRequest(request, response);
         }

@@ -112,10 +112,10 @@ public class albumsServlet extends HttpServlet {
         
         //System.out.println("GET MM");
         //String albums = "test album 2018";
-        String pageName ="/PhotoAddtest.jsp";
+        String pageName ="/jsp/PhotoAddtest.jsp";
         if(request.getRequestURL().toString().contains("/myAlbums.jsp")) 
-            pageName="/myAlbumsList.jsp";  
-        request.setAttribute("albums",albumNamesMap);        
+            pageName="/jsp/myAlbumsList.jsp";  
+        request.setAttribute("albums", albumNamesMap);        
         ServletContext sc = this.getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(pageName);
         rd.include(request, response); 
