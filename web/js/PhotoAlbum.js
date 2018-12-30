@@ -33,7 +33,7 @@ function openAlbum(albumId)
         {
             if (jQuery.isEmptyObject(data))
             {
-                console.log("test return data"+data);
+                console.log("test return data"+data.toString());
             }
         }});
 }

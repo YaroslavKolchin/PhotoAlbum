@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 /**
  *
  * @author talgat
@@ -57,17 +59,18 @@ public class AlbumDataServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException 
-    {
-        
-        System.out.println("servlet is called from js");
-        //processRequest(request, response);
-        
-        //String result = new Gson().toJson(departmentList);
+    throws ServletException, IOException 
+    {        
+        request.setCharacterEncoding(encoding);
         response.setCharacterEncoding(encoding);
-	response.setContentType("application/json");
-        String result = "hello from servlet";
+        String albumId = request.getParameter("albumId");
+        System.out.println("servlet is called from js "+albumId);
+        
+
+	//response.setContentType("application/json");   
+        String result = new Gson().toJson("Test Message From the Servlet");
 	response.getWriter().write(result);
+        //processRequest(request, response); 
     }
 
     /**
