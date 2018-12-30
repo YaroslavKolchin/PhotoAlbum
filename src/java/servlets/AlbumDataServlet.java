@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import db.DB;
+import packageWeb.Photo;
 /**
  *
  * @author talgat
@@ -65,8 +67,16 @@ public class AlbumDataServlet extends HttpServlet {
         response.setCharacterEncoding(encoding);
         String albumId = request.getParameter("albumId");
         System.out.println("servlet is called from js "+albumId);
-        
-
+        DB db = new DB();
+        try
+        {
+            Photo photo = db.dbPhotoInfo(albumId);
+            System.out.println("photo"+photo.getPhotoName());
+        }
+        catch(Exception ex)
+        {
+            System.out.println("exception in album Data servlet");
+        };
 	//response.setContentType("application/json");   
         String result = new Gson().toJson("Test Message From the Servlet");
 	response.getWriter().write(result);
