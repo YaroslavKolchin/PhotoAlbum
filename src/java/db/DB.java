@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+import packageWeb.Photo;
 
 
 
@@ -167,12 +168,13 @@ public class DB {
         Statement stmt = connection.createStatement();
         String query = "SELECT album_name,album_description,album_date_create FROM ALBUMS WHERE album_owner_id='"+owner+"'";
         ResultSet rs = stmt.executeQuery(query);
-          System.out.println("myalbums");
-        while (rs.next()) {
-             name = rs.getString("album_name");
-             des = rs.getString("album_description");
-             data = rs.getString("album_date_create");
-              System.out.println("name "+name+" decscription "+des+" date "+data);
+        System.out.println("myalbums");
+        while (rs.next()) 
+        {
+            name = rs.getString("album_name");
+            des = rs.getString("album_description");
+            data = rs.getString("album_date_create");
+            System.out.println("name "+name+" decscription "+des+" date "+data);
         }
         if (!connection.isClosed())
         {
@@ -263,11 +265,12 @@ public class DB {
       }
     }
     
-    public void dbPhotoInfo(String owner) throws Exception, SQLException  {
+    public Photo dbPhotoInfo(String owner) throws Exception, SQLException  {
       String name="a";
       String des="b";
       String data="c";
-        try
+      Photo photo = null;
+      try
       {
         String driver = "com.mysql.jdbc.Driver";
         String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
@@ -278,12 +281,16 @@ public class DB {
         Statement stmt = connection.createStatement();
         String query = "SELECT * FROM PHOTO WHERE album_owner_id='"+owner+"'";
         ResultSet rs = stmt.executeQuery(query);
-          System.out.println("myalbums");
-        while (rs.next()) {
-             name = rs.getString("album_name");
-             des = rs.getString("album_description");
-             data = rs.getString("album_date_create");
-              System.out.println("album name "+name+" album decscription "+des+" album date create "+data);
+        System.out.println("myalbums");
+        while (rs.next()) 
+        {
+            name = rs.getString("album_name");
+            des = rs.getString("album_description");
+            data = rs.getString("album_date_create");
+             
+            photo.setDescription(des);
+            photo.setPhotoName(name);             
+            System.out.println("album name "+name+" album decscription "+des+" album date create "+data);
         }
         if (!connection.isClosed())
         {
@@ -295,5 +302,6 @@ public class DB {
       {
           exception.printStackTrace();
       }
+      return photo;
   }
 }
