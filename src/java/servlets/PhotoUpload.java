@@ -18,6 +18,8 @@ import static java.nio.file.Files.newOutputStream;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -44,8 +46,8 @@ location = "/h" )
 
 @WebServlet(name = "PhotoUpload", urlPatterns = {"/PhotoUpload"})
 @MultipartConfig()
-public class PhotoUpload extends HttpServlet {
-
+public class PhotoUpload extends HttpServlet 
+{
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -55,11 +57,15 @@ public class PhotoUpload extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+    {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+        //String pageName ="web/jsp/PhotoAdd.jsp"; 
+        //response.sendRedirect(pageName);
+        try (PrintWriter out = response.getWriter()) 
+        {
+            // TODO output your page here. You may use following sample code.       
+            
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
@@ -83,7 +89,8 @@ public class PhotoUpload extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException 
+    {
         processRequest(request, response);
     }
 
@@ -97,10 +104,10 @@ public class PhotoUpload extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-         String name="";
-       if(request.getParameter("photo_name")!=null)
+            throws ServletException, IOException 
+    {
+        String name="";
+        if(request.getParameter("photo_name")!=null)
          name=request.getParameter("photo_name");
         String description = "";
         if(request.getParameter("photo_description")!=null)
@@ -128,19 +135,20 @@ public class PhotoUpload extends HttpServlet {
         //image.write(fileName);
         System.out.println("finished uploading a file");
         DB d = new DB();      
-                try 
-                {
-                    //String name,String description,String owner,String album
-                    System.out.println("success for Photo Upload "+owner);
-                    d.dbPhotoUpload(name,description,owner,photoAlbum);
-                    System.out.println("in db Photo Upload ok");
-                } 
-                catch (Exception ex) 
-                {
-                    System.out.println("ex: "+ex);
-                }
+        try 
+        {
+            //String name,String description,String owner,String album
+            System.out.println("success for Photo Upload "+owner);
+            d.dbPhotoUpload(name,description,owner,photoAlbum);
+            System.out.println("in db Photo Upload ok");
+        } 
+        catch (Exception ex) 
+        {
+            System.out.println("place for your exception:");
+        }     
+        response.sendRedirect("/web/jsp/PhotoAdd.jsp");
+        processRequest(request, response);
     }
-
     /**
      * Returns a short description of the servlet.
      *
