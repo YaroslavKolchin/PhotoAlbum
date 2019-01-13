@@ -265,11 +265,13 @@ public class DB {
       }
     }
     
-    public Photo dbPhotoInfo(String owner) throws Exception, SQLException  {
+    public ArrayList <Photo> dbPhotoInfo(String albumId) throws Exception, SQLException  {
       String name="a";
       String des="b";
       String data="c";
-      Photo photo = null;
+      String path="d";
+
+      ArrayList <Photo> photoList=new ArrayList<Photo>();
       try
       {
         String driver = "com.mysql.jdbc.Driver";
@@ -279,18 +281,23 @@ public class DB {
         Class.forName(driver);
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         Statement stmt = connection.createStatement();
-        String query = "SELECT * FROM PHOTO WHERE album_owner_id='"+owner+"'";
+        String query = "SELECT * FROM PHOTO WHERE photo_album_id='"+albumId+"'";
         ResultSet rs = stmt.executeQuery(query);
         System.out.println("myalbums");
         while (rs.next()) 
         {
-            name = rs.getString("album_name");
-            des = rs.getString("album_description");
-            data = rs.getString("album_date_create");
+            Photo photo = new Photo();
+            name = rs.getString("photo_name");
+            des = rs.getString("photo_description");
+            data = rs.getString("photo_date_upload");
+            path=rs.getString("photo_path");
              
             photo.setDescription(des);
-            photo.setPhotoName(name);             
-            System.out.println("album name "+name+" album decscription "+des+" album date create "+data);
+            photo.setPhotoName(name); 
+            photo.setDateUploud(data);
+            photo.setFilePath(path);
+            photoList.add(photo);
+            //System.out.println("photo name "+name+" photo decscription "+des+" photo date create "+data+" photo path "+path);
         }
         if (!connection.isClosed())
         {
@@ -302,6 +309,6 @@ public class DB {
       {
           exception.printStackTrace();
       }
-      return photo;
+      return photoList;
   }
 }
