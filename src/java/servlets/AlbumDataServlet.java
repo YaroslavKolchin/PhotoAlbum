@@ -5,17 +5,19 @@
  */
 package servlets;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import db.DB;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import db.DB;
+import javax.servlet.http.HttpSession;
 import packageWeb.Photo;
 /**
  *
@@ -67,16 +69,41 @@ public class AlbumDataServlet extends HttpServlet {
         response.setCharacterEncoding(encoding);
         String albumId = request.getParameter("albumId");
         System.out.println("servlet is called from js "+albumId);
+        HttpSession session = request.getSession(true);
+        String owner="2018";
+            if(session.getAttribute("photo_owner_id")!=null)
+            {
+                owner= session.getAttribute("photo_owner_id").toString(); 
+            }
+        String userDirectory=System.getProperty("user.home");
+        File PhotoDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+albumId);
         DB db = new DB();
         try
-        {
-            Photo photo = db.dbPhotoInfo(albumId);
-            System.out.println("photo"+photo.getPhotoName());
-        }
+        {   System.out.println("test");
+            ArrayList<Photo> photoList = db.dbPhotoInfo(albumId);
+            /*for(Photo photo:photoList)
+            {
+            //System.out.println("servlet photo name "+photo.getPhotoName()+" photo des "+photo.getDescription()+" photo date "+photo.getDateUploud()+" photo path "+photo.getFilePath());
+            System.out.println("photo name "+PhotoDirectory.getAbsolutePath());
+            }*/
+            System.out.println("test 89");
+            
+            File[] listOfFiles = PhotoDirectory.listFiles();
+             for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile()) {
+                    System.out.println("File " + listOfFiles[i].getName());
+                } else if (listOfFiles[i].isDirectory()) {
+            System.out.println("Directory " + listOfFiles[i].getName());
+  
+}
+                
+    }
+            }
         catch(Exception ex)
         {
             System.out.println("exception in album Data servlet");
         };
+        
 	//response.setContentType("application/json");   
         String result = new Gson().toJson("Test Message From the Servlet");
 	response.getWriter().write(result);
