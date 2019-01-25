@@ -107,7 +107,7 @@ public class albumsServlet extends HttpServlet {
         }
         else
         {
-            System.out.println(" created");    
+            System.out.println("created");    
         }
         
         //System.out.println("GET MM");
@@ -115,7 +115,8 @@ public class albumsServlet extends HttpServlet {
         String pageName ="/jsp/PhotoAddtest.jsp";
         if(request.getRequestURL().toString().contains("/myAlbums.jsp")) 
             pageName="/jsp/myAlbumsList.jsp";  
-        request.setAttribute("albums", albumNamesMap);        
+        request.setAttribute("album_owner_id", owner);  
+        request.setAttribute("albums", albumNamesMap);
         ServletContext sc = this.getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(pageName);
         rd.include(request, response); 
