@@ -23,6 +23,50 @@
         <servlet-name>registrationProcess</servlet-name>
         <servlet-class>servlets.registrationProcess</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PhotoImagesServlet</servlet-name>
+        <servlet-class>servlets.PhotoImagesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet2</servlet-name>
+        <servlet-class>servlets.PhotoServlet2</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet3</servlet-name>
+        <servlet-class>servlets.PhotoServlet3</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet4</servlet-name>
+        <servlet-class>servlets.PhotoServlet4</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet5</servlet-name>
+        <servlet-class>servlets.PhotoServlet5</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet6</servlet-name>
+        <servlet-class>servlets.PhotoServlet6</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet7</servlet-name>
+        <servlet-class>servlets.PhotoServlet7</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet8</servlet-name>
+        <servlet-class>servlets.PhotoServlet8</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet9</servlet-name>
+        <servlet-class>servlets.PhotoServlet9</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet10</servlet-name>
+        <servlet-class>servlets.PhotoServlet10</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet1</servlet-name>
+        <servlet-class>servlets.PhotoServlet1</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>albumsServlet</servlet-name>
         <url-pattern>/albumsServlet</url-pattern>
@@ -42,6 +86,46 @@
     <servlet-mapping>
         <servlet-name>registrationProcess</servlet-name>
         <url-pattern>/registrationProcess</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet2</servlet-name>
+        <url-pattern>/PhotoServlet2</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet3</servlet-name>
+        <url-pattern>/PhotoServlet3</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet4</servlet-name>
+        <url-pattern>/PhotoServlet4</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet5</servlet-name>
+        <url-pattern>/PhotoServlet5</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet6</servlet-name>
+        <url-pattern>/PhotoServlet6</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet7</servlet-name>
+        <url-pattern>/PhotoServlet7</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet8</servlet-name>
+        <url-pattern>/PhotoServlet8</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet9</servlet-name>
+        <url-pattern>/PhotoServlet9</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet10</servlet-name>
+        <url-pattern>/PhotoServlet10</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet1</servlet-name>
+        <url-pattern>/PhotoServlet1</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
