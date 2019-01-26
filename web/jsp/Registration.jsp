@@ -82,19 +82,19 @@ button:hover {
 </style>
     </head>
     <body>
-        <form action="../registrationProcess" style="border:1px solid #ccc" method="post">
+        <form onsubmit="return validationSubmit()" action="../registrationProcess" style="border:1px solid #ccc" method="post">
   <div class="container">
     <h1>Sign Up</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
     <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
+    <input type="text" placeholder="Enter Email" name="email" id="emailId" required>
 
     <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" required>
+    <input type="password" placeholder="Enter Password" name="password" id="passwordId" required>
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="reppasswordId" required>
     
     <label>
       <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
@@ -102,10 +102,33 @@ button:hover {
 
 
     <div class="clearfix">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="signupbtn">Sign Up</button>
+     <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
+      <button type="submit" class="signupbtn" id="submitId" >Sign Up</button>
     </div>
   </div>
 </form>
+        <script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/web/jsp/login.jsp";
+    };
+    function validationSubmit(){
+        console.log("test "+document.getElementById("emailId").value.length);
+        if((document.getElementById("emailId").value.length>1 )&& 
+             (document.getElementById("emailId").value.length<15 ))
+     return true;
+ else 
+     return false;
+        if((document.getElementById("passwordId").value.length>8 )&& 
+             (document.getElementById("passwordId").value.length<20 ))
+     return true;
+ else 
+     return false;
+        if((document.getElementById("reppasswordId").value.length>8 )&& 
+             (document.getElementById("reppasswordId").value.length<20 ))
+     return true;
+ else 
+     return false;
+    };
+        </script>
     </body>
 </html>

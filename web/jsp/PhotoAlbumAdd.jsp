@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Registration Page</title>
+        
         <style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
@@ -82,22 +83,39 @@ button:hover {
 </style>
     </head>
     <body>
-        <form action="../AlbumAdd" style="border:1px solid #ccc" method="post">
+        <form onsubmit="return valSubmit()" action="../AlbumAdd" style="border:1px solid #ccc" method="post">
   <div class="container">
     <h1>Create album</h1>
     <p>Please fill in this form to create an album.</p>
     <hr>
     <label for="album"><b>Name</b></label>
-    <input type="text" placeholder="Enter album name" name="album_name" required>
+    <input type="text" placeholder="Enter album name" name="album_name" id="nameId" required>
 
     <label for="description"><b>Description</b></label>
-    <input type="text" placeholder="Enter Description " name="album_description" required>
+    <input type="text" placeholder="Enter Description " name="album_description" id="desId" required>
     
     <div class="clearfix">
-      <button type="button" class="cancelbtn">Cancel</button>
+      <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
       <button type="submit" class="signupbtn">Create</button>
     </div>
   </div>
 </form>
+        <script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "/web/jsp/HomePage.jsp";
+    };
+    function valSubmit(){      
+        if((document.getElementById("nameId").value.length>1 )&& 
+             (document.getElementById("nameId").value.length<15 ))
+     return true;
+ else 
+     return false;
+        if((document.getElementById("desId").value.length>2 )&& 
+             (document.getElementById("desId").value.length<50 ))
+     return true;
+ else 
+     return false;
+    };
+        </script>
     </body>
 </html>
