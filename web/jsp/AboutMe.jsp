@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:include page="MasterPage/Header.jsp" />
+<jsp:include page="../MasterPage/Header.jsp" />
 <div id="content">																																																																																																																																																																																																																																																																																																																	<div class="inner_copy"><a href="http://www.bestfreetemplates.info/flash.php">free flash templates</a><a href="http://www.beautifullife.info/industrial-design/st-valentines-day-gift-ideas/">st. valentine's day ideas</a></div>																																																																																																																																																																																																																																																																																																																					
     <div id="wrapper1">
         <div class="about">
@@ -18,4 +18,4 @@
         </div>
     </div>
 </div>
-<jsp:include page="MasterPage/Footer.jsp" />
+<jsp:include page="../MasterPage/Footer.jsp" />

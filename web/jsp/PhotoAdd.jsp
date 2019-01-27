@@ -11,11 +11,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" type="text/css" href="../css/PhotoAdd.css" />
-        <style>
-        </style>
     </head>
     <body>
-       <jsp:include page="../albumsServlet" />
-        
+       <jsp:include page="../albumsServlet" />        
     </body>
 </html>
