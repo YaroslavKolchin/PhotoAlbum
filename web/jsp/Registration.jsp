@@ -96,15 +96,13 @@ button:hover {
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password" placeholder="Repeat Password" name="psw-repeat" id="reppasswordId" required>
     
-    <label>
-      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-    </label>
 
 
     <div class="clearfix">
      <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
       <button type="submit" class="signupbtn" id="submitId" >Sign Up</button>
     </div>
+    <span id="errorId" style="color:red"></span>
   </div>
 </form>
         <script type="text/javascript">
@@ -113,21 +111,37 @@ button:hover {
     };
     function validationSubmit(){
         console.log("test "+document.getElementById("emailId").value.length);
-        if((document.getElementById("emailId").value.length>1 )&& 
-             (document.getElementById("emailId").value.length<15 ))
+        if((document.getElementById("emailId").value.length<1 )|| 
+             (document.getElementById("emailId").value.length>15 ))
+     {
+         document.getElementById("errorId").textContent="The length of email must be between 1 and 15 characters";
+            console.log("email"+document.getElementById("emailId").value);
+            return false;
+     } 
+           
+        if((document.getElementById("passwordId").value.length<5 )|| 
+             (document.getElementById("passwordId").value.length>20 ))
+     {
+        document.getElementById("errorId").textContent="The length of passwoord must be between 5 and 20 characters";    
+           console.log("pass"+document.getElementById("passwordId").value);
+            return false;
+     }
+        if((document.getElementById("reppasswordId").value.length<5 )|| 
+             (document.getElementById("reppasswordId").value.length>20 ))
+     {
+        document.getElementById("errorId").textContent="The length of passwoord must be between 5 and 20 characters";    
+           console.log("reppass"+document.getElementById("reppasswordId").value);
+            return false;
+     }
+        if(!(document.getElementById("passwordId").value===document.getElementById("reppasswordId").value))
+     {
+         document.getElementById("errorId").textContent="repeat password correctly";
+         console.log("pass"+document.getElementById("passwordId").value);    
+         console.log("reppass"+document.getElementById("reppasswordId").value);
+            return false;
+     }
+     
      return true;
- else 
-     return false;
-        if((document.getElementById("passwordId").value.length>8 )&& 
-             (document.getElementById("passwordId").value.length<20 ))
-     return true;
- else 
-     return false;
-        if((document.getElementById("reppasswordId").value.length>8 )&& 
-             (document.getElementById("reppasswordId").value.length<20 ))
-     return true;
- else 
-     return false;
     };
         </script>
     </body>

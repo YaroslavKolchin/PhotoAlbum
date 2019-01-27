@@ -98,6 +98,7 @@ button:hover {
       <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
       <button type="submit" class="signupbtn">Create</button>
     </div>
+    <span id="errorId" style="color:red"></span>
   </div>
 </form>
         <script type="text/javascript">
@@ -105,16 +106,22 @@ button:hover {
         location.href = "/web/jsp/HomePage.jsp";
     };
     function valSubmit(){      
-        if((document.getElementById("nameId").value.length>1 )&& 
-             (document.getElementById("nameId").value.length<15 ))
-     return true;
- else 
-     return false;
-        if((document.getElementById("desId").value.length>2 )&& 
-             (document.getElementById("desId").value.length<50 ))
-     return true;
- else 
-     return false;
+        if((document.getElementById("nameId").value.length<1 )|| 
+             (document.getElementById("nameId").value.length>15 ))
+     {
+         document.getElementById("errorId").textContent="The length of the album name must be between 1 and 15 characters";
+          console.log("name"+document.getElementById("nameId").value);  
+            return false;
+     } 
+           
+        if((document.getElementById("desId").value.length<2 )|| 
+             (document.getElementById("desId").value.length>200 ))
+     {
+        document.getElementById("errorId").textContent="The length of the album description must be between 2 and 200 characters";    
+         console.log("des"+document.getElementById("desId").value);
+            return false;
+     }
+        return true;
     };
         </script>
     </body>
