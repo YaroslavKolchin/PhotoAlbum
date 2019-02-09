@@ -85,11 +85,11 @@ public class albumsServlet extends HttpServlet {
         System.out.println("owner "+owner);
         if(owner!=null)
         {
-            DB d = new DB();
-            
-            try {
+            DB d = new DB();            
+            try 
+            {
                 System.out.println("success "+owner);
-                albumNamesMap=d.dbOwnerAlbums(owner);
+                albumNamesMap = d.dbOwnerAlbums(owner);
                 /*
                 Set<Integer> key =  albumNamesMap.keySet();
                 Iterator<Integer> it = key.iterator();             
@@ -101,21 +101,23 @@ public class albumsServlet extends HttpServlet {
                     }
                 }
                 */
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 System.out.println("ex: "+ex);
             }     
         }
         else
         {
             System.out.println("created");    
-        }
-        
+        }        
         //System.out.println("GET MM");
         //String albums = "test album 2018";
-        String pageName ="/jsp/PhotoAddtest.jsp";
+        String pageName = "/jsp/PhotoAddtest.jsp";
         if(request.getRequestURL().toString().contains("/myAlbums.jsp")) 
-            pageName="/jsp/myAlbumsList.jsp";  
+            pageName = "/jsp/myAlbumsList.jsp";  
         request.setAttribute("album_owner_id", owner);  
+        //System.out.println("albumNamesMap:"+albumNamesMap);
         request.setAttribute("albums", albumNamesMap);
         ServletContext sc = this.getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(pageName);
