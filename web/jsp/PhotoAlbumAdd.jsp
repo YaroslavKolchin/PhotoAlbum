@@ -5,11 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Registration Page</title>
+<jsp:include page="../MasterPage/Header.jsp" />
+        <title>Add new album</title>
         
         <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -81,8 +78,6 @@ button:hover {
     }
 }
 </style>
-    </head>
-    <body>
         <form onsubmit="return valSubmit()" action="../AlbumAdd" style="border:1px solid #ccc" method="post">
   <div class="container">
     <h1>Create album</h1>
@@ -124,5 +119,4 @@ button:hover {
         return true;
     };
         </script>
-    </body>
-</html>
+<jsp:include page="../MasterPage/Footer.jsp" />

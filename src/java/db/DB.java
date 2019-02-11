@@ -311,4 +311,44 @@ public class DB {
       }
       return photoList;
   }
+    //select count(photo_id),photo_album_id,a.album_name from PHOTO p,ALBUMS a where a.album_id=p.photo_album_id group by p.photo_album_id having count(photo_id)>1;
+public Map<Integer,String> dbShowPhotos(String owner) throws Exception, SQLException 
+    {      
+        Map<Integer,String> albumNamesMap = new HashMap<Integer,String>();
+        try
+       {
+        /*java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(dt);*/
+        String driver = "com.mysql.jdbc.Driver";
+        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+        String user = "albums_admin";
+        String pass = "alBUM_2018";
+        Class.forName(driver);
+        String name="a";
+        int id=1;
+        Connection connection = DriverManager.getConnection(connectionString, user, pass);
+        Statement stmt = connection.createStatement();
+        String query = "SELECT album_id, album_name FROM PHOTO right JOIN ALBUMS on PHOTO.photo_album_id = ALBUMS.album_id group by ALBUMS.album_id HAVING count(PHOTO.photo_id)>=0 OR NOT EXISTS (SELECT 1 FROM PHOTO WHERE photo_owner_id='"+owner+"' PHOTO.photo_album_id=ALBUMS.album_id)";
+           System.out.println("query "+query);
+        ResultSet rs = stmt.executeQuery(query);
+          System.out.println("myalbums");
+        while (rs.next()) {
+             id=rs.getInt("album_id");
+             name = rs.getString("album_name");            
+             // System.out.println("name Album="+name);
+              albumNamesMap.put(id, name);
+        }             
+        if (!connection.isClosed())
+        {
+            connection.close();
+        }
+
+      }
+      catch(Exception exception)
+      {
+          exception.printStackTrace();
+      }
+        return albumNamesMap;
+    }
 }

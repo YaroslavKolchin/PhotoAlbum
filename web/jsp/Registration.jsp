@@ -5,10 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<jsp:include page="../MasterPage/HeaderRegistration.jsp" />
         <title>Registration Page</title>
         <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -80,8 +77,6 @@ button:hover {
     }
 }
 </style>
-    </head>
-    <body>
         <form onsubmit="return validationSubmit()" action="../registrationProcess" style="border:1px solid #ccc" method="post">
   <div class="container">
     <h1>Sign Up</h1>
@@ -143,6 +138,5 @@ button:hover {
      
      return true;
     };
-        </script>
-    </body>
-</html>
+   </script>
+<jsp:include page="../MasterPage/Footer.jsp" />
