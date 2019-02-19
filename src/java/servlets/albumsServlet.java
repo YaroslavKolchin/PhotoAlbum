@@ -83,13 +83,22 @@ public class albumsServlet extends HttpServlet {
             owner = session.getAttribute("album_owner_id").toString();
         }
         System.out.println("owner "+owner);
+        boolean show = true;
+        
+        String pageName = "/jsp/PhotoAddtest.jsp";
+        if(request.getRequestURL().toString().contains("/myAlbums.jsp")) 
+        {
+            pageName = "/jsp/myAlbumsList.jsp";
+            show = false;
+        }
+        
         if(owner!=null)
         {
             DB d = new DB();            
             try 
             {
                 System.out.println("success "+owner);
-                albumNamesMap = d.dbOwnerAlbums(owner);
+                albumNamesMap = d.dbOwnerAlbums(owner, show);
                 /*
                 Set<Integer> key =  albumNamesMap.keySet();
                 Iterator<Integer> it = key.iterator();             
@@ -113,9 +122,7 @@ public class albumsServlet extends HttpServlet {
         }        
         //System.out.println("GET MM");
         //String albums = "test album 2018";
-        String pageName = "/jsp/PhotoAddtest.jsp";
-        if(request.getRequestURL().toString().contains("/myAlbums.jsp")) 
-            pageName = "/jsp/myAlbumsList.jsp";  
+          
         request.setAttribute("album_owner_id", owner);  
         //System.out.println("albumNamesMap:"+albumNamesMap);
         request.setAttribute("albums", albumNamesMap);

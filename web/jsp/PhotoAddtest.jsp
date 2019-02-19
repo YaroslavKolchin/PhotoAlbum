@@ -11,8 +11,8 @@
     <div id="wrapper1">
         <div class="about">
         <form onsubmit="return valSubmit()" action="../PhotoUpload" style="border:1px solid #ccc" method="post" enctype="multipart/form-data">
-            <div class="container">
                 <h1>Add photo</h1>
+                <br>
                 <label style="float:left" for="Name"><b>Name</b></label>                
                 <input type="text" placeholder="Enter photo name" name="photo_name" id="photoId" required>
                 <label for="Description"><b>Description</b></label>
@@ -32,7 +32,6 @@
                   <button type="submit" class="signupbtn">Upload</button>
                 </div>
                 <span id="errorId" style="color:red"></span>
-            </div>
         </form>
         <script type="text/javascript">
         document.getElementById("myButton").onclick = function ()

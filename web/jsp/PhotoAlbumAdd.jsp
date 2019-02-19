@@ -78,24 +78,24 @@ button:hover {
     }
 }
 </style>
-        <form onsubmit="return valSubmit()" action="../AlbumAdd" style="border:1px solid #ccc" method="post">
-  <div class="container">
-    <h1>Create album</h1>
-    <p>Please fill in this form to create an album.</p>
-    <hr>
-    <label for="album"><b>Name</b></label>
-    <input type="text" placeholder="Enter album name" name="album_name" id="nameId" required>
+<div id="content">																																																																																																																																																																																																																																																																																																																	<div class="inner_copy"><a href="http://www.bestfreetemplates.info/flash.php">free flash templates</a><a href="http://www.beautifullife.info/industrial-design/st-valentines-day-gift-ideas/">st. valentine's day ideas</a></div>																																																																																																																																																																																																																																																																																																																					
+    <div id="wrapper1">
+        <div class="about">
+            <form onsubmit="return valSubmit()" action="../AlbumAdd" style="border:1px solid #ccc" method="post">
+                <h1>Create album</h1>
+                <br>
+                <label style="float:left" for="album"><b>Name</b></label>
+                <input type="text" placeholder="Enter album name" name="album_name" id="nameId" required>
 
-    <label for="description"><b>Description</b></label>
-    <input type="text" placeholder="Enter Description " name="album_description" id="desId" required>
-    
-    <div class="clearfix">
-      <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
-      <button type="submit" class="signupbtn">Create</button>
-    </div>
-    <span id="errorId" style="color:red"></span>
-  </div>
-</form>
+                <label for="description"><b>Description</b></label>
+                <input type="text" placeholder="Enter Description " name="album_description" id="desId" required>
+
+                <div class="clearfix">
+                  <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
+                  <button type="submit" class="signupbtn">Create</button>
+                </div>
+                <span id="errorId" style="color:red"></span>
+            </form>
         <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
         location.href = "/web/jsp/HomePage.jsp";
@@ -119,4 +119,7 @@ button:hover {
         return true;
     };
         </script>
+       </div>
+    </div>
+</div>        
 <jsp:include page="../MasterPage/Footer.jsp" />

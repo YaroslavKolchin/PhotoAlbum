@@ -6,8 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:include page="../MasterPage/HeaderRegistration.jsp" />
-        <title>Registration Page</title>
-        <style>
+<title>Registration Page</title>
+<style>
 body {font-family: Arial, Helvetica, sans-serif;}
 * {box-sizing: border-box}
 
@@ -77,29 +77,27 @@ button:hover {
     }
 }
 </style>
-        <form onsubmit="return validationSubmit()" action="../registrationProcess" style="border:1px solid #ccc" method="post">
-  <div class="container">
-    <h1>Sign Up</h1>
-    <p>Please fill in this form to create an account.</p>
-    <hr>
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" id="emailId" required>
+<div id="content">																																																																																																																																																																																																																																																																																																																	<div class="inner_copy"><a href="http://www.bestfreetemplates.info/flash.php">free flash templates</a><a href="http://www.beautifullife.info/industrial-design/st-valentines-day-gift-ideas/">st. valentine's day ideas</a></div>																																																																																																																																																																																																																																																																																																																					
+    <div id="wrapper1">
+        <div class="about">
+            <form onsubmit="return validationSubmit()" action="../registrationProcess" style="border:1px solid #ccc" method="post">
+                <h1>Sign Up</h1>
+                <br>
+                <label style="float:left" for="email"><b>Email</b></label>
+                <input type="text" placeholder="Enter Email" name="email" id="emailId" required>
 
-    <label for="password"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="password" id="passwordId" required>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" id="passwordId" required>
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="reppasswordId" required>
-    
+                <label for="psw-repeat"><b>Repeat Password</b></label>
+                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="reppasswordId" required>
 
-
-    <div class="clearfix">
-     <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
-      <button type="submit" class="signupbtn" id="submitId" >Sign Up</button>
-    </div>
-    <span id="errorId" style="color:red"></span>
-  </div>
-</form>
+                <div class="clearfix">
+                    <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
+                    <button type="submit" class="signupbtn" id="submitId" >Sign Up</button>
+                </div>
+                <span id="errorId" style="color:red"></span>
+            </form>
         <script type="text/javascript">
     document.getElementById("myButton").onclick = function () {
         location.href = "/web/jsp/login.jsp";
@@ -139,4 +137,7 @@ button:hover {
      return true;
     };
    </script>
+       </div>
+    </div>
+</div>
 <jsp:include page="../MasterPage/Footer.jsp" />

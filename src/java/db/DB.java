@@ -187,7 +187,7 @@ public class DB {
           exception.printStackTrace();
       }
   }
-    public Map<Integer,String> dbOwnerAlbums(String owner) throws Exception, SQLException 
+    public Map<Integer,String> dbOwnerAlbums(String owner, boolean show) throws Exception, SQLException 
     {      
         Map<Integer,String> albumNamesMap = new HashMap<Integer,String>();
         try
@@ -205,6 +205,9 @@ public class DB {
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         Statement stmt = connection.createStatement();
         String query = "SELECT album_id,album_name FROM ALBUMS WHERE album_owner_id='"+owner+"'";
+        if(show)
+            query = "SELECT album_id, album_name FROM ALBUMS LEFT JOIN PHOTO ON ALBUMS.album_id = PHOTO.photo_album_id WHERE ALBUMS.album_owner_id='"+owner+"'GROUP BY ALBUMS.album_id HAVING COUNT(ALBUMS.album_id) < 10";
+        
         ResultSet rs = stmt.executeQuery(query);
           System.out.println("myalbums");
         while (rs.next()) {
