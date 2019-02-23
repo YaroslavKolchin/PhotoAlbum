@@ -22,7 +22,6 @@
     String image_8  = response.encodeURL(request.getContextPath()+"/PhotoServlet8?albumId=");
     String image_9  = response.encodeURL(request.getContextPath()+"/PhotoServlet9?albumId=");
     String image_10 = response.encodeURL(request.getContextPath()+"/PhotoServlet10?albumId=");
-
     //System.out.println("servlet text: "+getAlbumServlet);
 %>
 <script type="text/javascript">
