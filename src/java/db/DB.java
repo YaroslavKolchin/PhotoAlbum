@@ -354,4 +354,88 @@ public Map<Integer,String> dbShowPhotos(String owner) throws Exception, SQLExcep
       }
         return albumNamesMap;
     }
+public int dbDeleteAlbum(String album_id) throws Exception, SQLException 
+    {   
+        int a=1;
+        try
+       {
+        /*java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(dt);*/
+        String driver = "com.mysql.jdbc.Driver";
+        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+        String user = "albums_admin";
+        String pass = "alBUM_2018";
+        Class.forName(driver);
+        String name="a";
+        int id=1;
+        Connection connection = DriverManager.getConnection(connectionString, user, pass);
+        Statement stmt = connection.createStatement();
+        String query = "DELETE from ALBUMS where album_id=?;";
+        PreparedStatement preparedStmt = connection.prepareStatement(query);      
+        int par=Integer.parseInt(album_id);
+        preparedStmt.setInt(1, (int)par);
+        preparedStmt.executeUpdate();
+        System.out.println("query "+query);
+        ResultSet rs = stmt.executeQuery(query);
+          System.out.println("myalbums");
+        while (rs.next()) {
+             id=rs.getInt("album_id");
+             name = rs.getString("album_name");            
+             // System.out.println("name Album="+name);
+        }             
+        if (!connection.isClosed())
+        {
+            connection.close();
+        }
+
+      }
+      catch(Exception exception)
+      {
+          exception.printStackTrace();
+      }
+        return a;
+    }
+public int dbDeletePhoto(String photo_id) throws Exception, SQLException 
+    {   
+        int a=1;
+        try
+       {
+        /*java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String date = sdf.format(dt);*/
+        String driver = "com.mysql.jdbc.Driver";
+        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+        String user = "albums_admin";
+        String pass = "alBUM_2018";
+        Class.forName(driver);
+        String name="a";
+        int id=1;
+        Connection connection = DriverManager.getConnection(connectionString, user, pass);
+        Statement stmt = connection.createStatement();
+        String query = "DELETE from PHOTO where album_id=?;";
+        PreparedStatement preparedStmt = connection.prepareStatement(query);      
+        int par=Integer.parseInt(photo_id);
+        preparedStmt.setInt(1, (int)par);
+        preparedStmt.executeUpdate();
+        System.out.println("query "+query);
+        ResultSet rs = stmt.executeQuery(query);
+          System.out.println("myalbums");
+        while (rs.next()) {
+             id=rs.getInt("album_id");
+             name = rs.getString("album_name");            
+             // System.out.println("name Album="+name);
+        }             
+        if (!connection.isClosed())
+        {
+            connection.close();
+        }
+
+      }
+      catch(Exception exception)
+      {
+          exception.printStackTrace();
+      }
+        return a;
+    }
 }
