@@ -19,9 +19,8 @@
  */
 function openAlbum(albumId)
 {    
-    console.log("albumId: "+albumId);
-    
-    console.log("owner: "+owner);
+    //console.log("albumId: "+albumId);    
+    //console.log("owner: "+owner);
     $("#image1").attr("src", image_1 + albumId+"&photo_owner_id="+owner);                
     $("#image2").attr("src", image_2 + albumId+"&photo_owner_id="+owner);
     $("#image3").attr("src", image_3 + albumId+"&photo_owner_id="+owner);
@@ -44,7 +43,7 @@ function openAlbum(albumId)
     $("#image9Thumb").attr("src", image_9 + albumId+"&photo_owner_id="+owner);
     $("#image10Thumb").attr("src", image_10 + albumId+"&photo_owner_id="+owner);
     
-    console.log("image_1: "+image_1+albumId+"&photo_owner_id="+owner);
+    //console.log("image_1: "+image_1+albumId+"&photo_owner_id="+owner);
     var all = document.getElementsByClassName("background");
     for (var i = 0; i < all.length; i++)
     {
