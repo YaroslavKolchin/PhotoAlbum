@@ -100,3 +100,10 @@ function openAlbum(albumId)
         x[slideIndex-1].style.display = "block";
         dots[slideIndex-1].className += " w3-opacity-off";
     }
+    $("#deletePhotoBtn").click(function()
+    {
+        console.log("delete photo");
+        //var words1 = $('#textAreaID').val();       
+        //$('deleteBtn').val("THERE ARE "+wordsInText+" WORDS");
+    });
+    
