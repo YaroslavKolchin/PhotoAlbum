@@ -51,21 +51,21 @@
     .wrapper2{display:none}
 </style>
 <div class="container">
-    <c:forEach items="${albums}" var="Map">
-       <br>
-       <table>
+    <table id="albumsTable">
+        <c:forEach items="${albums}" var="Map">                
            <tr>
                <td>
-       <a class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)" href="#">               
-           <c:out value="${Map.value}"></c:out>
-       </a> 
+                    <a class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)" href="#">               
+                    <c:out value="${Map.value}"></c:out>
+                    </a> 
                </td> 
                <td>
                    <button type="button" id="deleteAlbumBtn${Map.key}" onclick="deleteAlbum(this.id)">Delete this album</button>                   
-               </td> 
-    </c:forEach>
-       </table>
-</div> 
+               </td>
+           </tr>
+        </c:forEach>
+    </table>    
+</div>
 <div id="wrapper2">
     <div class="background">
         <div class="black">                    
