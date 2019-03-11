@@ -105,6 +105,22 @@ public class PhotoServlet2 extends HttpServlet {
             fis.close();
             bout.close();
         }
+        else if(listOfFiles.length < 1)
+        {
+            File NoPhotoDirectory = new File(userDirectory+"/PhotoAlbum/NoPhoto/1.png");            
+            System.out.println("servlet 2 if no photos: " + NoPhotoDirectory.getAbsolutePath());
+            FileInputStream fis = new FileInputStream(NoPhotoDirectory.getAbsolutePath());
+            BufferedInputStream bin = new BufferedInputStream(fis);  
+            BufferedOutputStream bout = new BufferedOutputStream(stream);  
+            int ch = 0;
+            while((ch = bin.read())!=-1)  
+            {  
+                bout.write(ch);
+            }
+            bin.close();
+            fis.close();
+            bout.close();
+        }
         stream.close();    
         //processRequest(request, response);
     }

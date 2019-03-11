@@ -91,7 +91,7 @@ public class PhotoServlet5 extends HttpServlet {
             fis.close();
             bout.close();
         }
-        else if( listOfFiles.length < thisServlet)
+        else if( listOfFiles.length < thisServlet && listOfFiles.length>0)
         {           
             int i = 0;
             if(listOfFiles.length != 1)       
@@ -111,6 +111,22 @@ public class PhotoServlet5 extends HttpServlet {
             fis.close();
             bout.close();
             
+        }
+        else if(listOfFiles.length < 1)
+        {
+            File NoPhotoDirectory = new File(userDirectory+"/PhotoAlbum/NoPhoto/1.png");            
+            System.out.println("servlet 5 if no photos: " + NoPhotoDirectory.getAbsolutePath());
+            FileInputStream fis = new FileInputStream(NoPhotoDirectory.getAbsolutePath());
+            BufferedInputStream bin = new BufferedInputStream(fis);  
+            BufferedOutputStream bout = new BufferedOutputStream(stream);  
+            int ch = 0;
+            while((ch = bin.read())!=-1)  
+            {  
+                bout.write(ch);
+            }
+            bin.close();
+            fis.close();
+            bout.close();
         }
         System.out.println("5B");
         stream.close();      
