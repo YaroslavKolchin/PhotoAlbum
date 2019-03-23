@@ -160,6 +160,7 @@ text-decoration:none
 #sidebar a:visited{color:#9A9A9A;}
 #sidebar a:hover{color:#1DDFDF}
 #sidebar #active{color:#1DDFDF}
+/*
 .background{
 background-image:url(../images/bg.gif);
 background-position:top left;
@@ -167,6 +168,7 @@ background-repeat:repeat-y;
 overflow:hidden;
 width:1000px;
 }
+*/
 #gallery{
 padding:0 0 0 37px;
 overflow:hidden;
@@ -196,6 +198,7 @@ font-size:11px;
 color:#9A9A9A;
 text-decoration:none
 }
+/*
 .black{
 width:1000px;
 background-image:url(../images/black.gif);
@@ -203,6 +206,7 @@ background-position:bottom left;
 background-repeat:no-repeat;
 overflow:hidden;
 }
+*/
 #pages{
 width:730px;
 padding:20px 0 20px 175px;
@@ -248,4 +252,17 @@ overflow:hidden;
 line-height:0px;
 padding:0px;
 font-size:11px
+}
+.mySlidesText{
+    color: #f2f2f2; 
+    font-size: 15px; 
+    padding: 8px 12px;
+    width: 100%; 
+    text-align: center; 
+}
+
+.mySlides
+{
+    width: 640px;
+    height: 480px;
 }
