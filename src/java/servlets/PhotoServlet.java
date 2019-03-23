@@ -5,22 +5,27 @@
  */
 package servlets;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
+import com.google.gson.Gson;
+import db.DB;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.FileInputStream;
-import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpSession;
+import packageWeb.Photo;
 
 /**
  *
  * @author talgat
  */
-public class imageServlet extends HttpServlet {
+public class PhotoServlet extends HttpServlet {
     private String encoding = "UTF-8";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +44,10 @@ public class imageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet imageServlet</title>");            
+            out.println("<title>Servlet PhotoServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet imageServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PhotoServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,45 +64,56 @@ public class imageServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.setCharacterEncoding(encoding);
-        response.setCharacterEncoding(encoding);
+            throws ServletException, IOException 
+    {
+        ArrayList <Photo> photoList = new ArrayList<>();       
         
-        String filePath = "/home/talgat/email/albumName/1.jpg";
-        response.setContentType("image/jpg");
-        ServletOutputStream stream = response.getOutputStream();
-        FileInputStream fis = new FileInputStream(filePath);
-        BufferedInputStream bin = new BufferedInputStream(fis);  
-        BufferedOutputStream bout = new BufferedOutputStream(stream);  
-        int ch = 0;
-        while((ch = bin.read())!=-1)  
-        {  
-            bout.write(ch);
+        String result = "1";
+        String albumId = request.getParameter("albumId");
+        /*
+        HttpSession session = request.getSession(true);
+        if(session.getAttribute("albumId")!=null)
+        {
+            System.out.println("session "+session.getAttribute("albumId").toString());
+            albumId = session.getAttribute("albumId").toString();
         }
-        bin.close();
-        fis.close();
-        bout.close();
-        stream.close();
+        */
+        System.out.println("albumId "+albumId);
+        if(albumId!=null)
+        {
+            DB d = new DB();            
+            try 
+            {
+                System.out.println("success "+albumId);
+                photoList = d.dbPhotoInfo(albumId);                
+            }
+            catch (Exception ex)
+            {
+                System.out.println("exception in calling photo info: "+ex);
+            }     
+        }
+        else
+        {
+            System.out.println("album id is null");    
+        }
+        /*
+        request.setAttribute("albumId", albumId);
+        request.setAttribute("photos", photoList);
+        ServletContext sc = this.getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher(pageName);
+        rd.include(request, response); 
+        processRequest(request, response);
+        */
+        response.setCharacterEncoding(encoding);
+        response.setContentType("application/json");
+        result = new Gson().toJson(photoList);
+        response.getWriter().write(result);
     }
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

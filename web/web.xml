@@ -67,6 +67,10 @@
         <servlet-name>PhotoServlet1</servlet-name>
         <servlet-class>servlets.PhotoServlet1</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PhotoServlet</servlet-name>
+        <servlet-class>servlets.PhotoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>albumsServlet</servlet-name>
         <url-pattern>/albumsServlet</url-pattern>
@@ -126,6 +130,10 @@
     <servlet-mapping>
         <servlet-name>PhotoServlet1</servlet-name>
         <url-pattern>/PhotoServlet1</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PhotoServlet</servlet-name>
+        <url-pattern>/PhotoServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,10 +4,8 @@
  * and open the template in the editor.
  */
 function deleteAlbum(albumId)
-    {
-        console.log("delete album"+albumId);
-       
-        //var words1 = $('#textAreaID').val();       
-        //$('deleteBtn').val("THERE ARE "+wordsInText+" WORDS");
-    }
-
+{
+    console.log("delete album"+albumId);       
+    //var words1 = $('#textAreaID').val();       
+    //$('deleteBtn').val("THERE ARE "+wordsInText+" WORDS");
+}

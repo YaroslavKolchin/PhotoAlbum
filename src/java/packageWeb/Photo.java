@@ -16,7 +16,7 @@ public class Photo {
    public String photoName;
    public String dateTaken;
    public String description;
-   public String dateUploud;
+   public String dateUpload;
    public String filePath;
 
     public int getPhotoId() {
@@ -67,12 +67,12 @@ public class Photo {
         this.description = description;
     }
 
-    public String getDateUploud() {
-        return dateUploud;
+    public String getDateUpload() {
+        return dateUpload;
     }
 
-    public void setDateUploud(String dateUploud) {
-        this.dateUploud = dateUploud;
+    public void setDateUpload(String dateUpload) {
+        this.dateUpload = dateUpload;
     }
 
     public String getFilePath() {

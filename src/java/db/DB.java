@@ -271,9 +271,7 @@ public class DB {
     public ArrayList <Photo> dbPhotoInfo(String albumId) throws Exception, SQLException  {
       String name="a";
       String des="b";
-      String data="c";
-      String path="d";
-
+      
       ArrayList <Photo> photoList=new ArrayList<Photo>();
       try
       {
@@ -292,13 +290,9 @@ public class DB {
             Photo photo = new Photo();
             name = rs.getString("photo_name");
             des = rs.getString("photo_description");
-            data = rs.getString("photo_date_upload");
-            path=rs.getString("photo_path");
              
             photo.setDescription(des);
-            photo.setPhotoName(name); 
-            photo.setDateUploud(data);
-            photo.setFilePath(path);
+            photo.setPhotoName(name);
             photoList.add(photo);
             //System.out.println("photo name "+name+" photo decscription "+des+" photo date create "+data+" photo path "+path);
         }
