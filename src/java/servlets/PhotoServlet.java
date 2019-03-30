@@ -66,7 +66,8 @@ public class PhotoServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException 
     {
-        ArrayList <Photo> photoList = new ArrayList<>();       
+        ArrayList <Photo> photoList = new ArrayList<>(); 
+         
         
         String result = "1";
         String albumId = request.getParameter("albumId");
@@ -85,7 +86,12 @@ public class PhotoServlet extends HttpServlet {
             try 
             {
                 System.out.println("success "+albumId);
-                photoList = d.dbPhotoInfo(albumId);                
+                photoList = d.dbPhotoInfo(albumId); 
+                for (int i = 0; i < photoList.size(); i++)
+            {
+                Photo ph=photoList.get(i);
+                System.out.println("photo name "+ph.photoName+" photo des "+ph.description);
+            }
             }
             catch (Exception ex)
             {

@@ -75,6 +75,7 @@ public class AlbumDataServlet extends HttpServlet {
         {   
             System.out.println("test");
             ArrayList<Photo> photoList = db.dbPhotoInfo(albumId);
+           
             /*
                 for(Photo photo:photoList)
                 {
