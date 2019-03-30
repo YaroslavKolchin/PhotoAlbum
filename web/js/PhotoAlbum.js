@@ -12,35 +12,36 @@ function openAlbum(albumId)
             data = JSON.parse(xhr.responseText);
             if(data!==null && data.length>0)
             {
-                document.getElementById("image1Text").innerHTML = data[0].photoName+" "+data[0].description;  
+                document.getElementById("image1").style.display = "initial";
             }
             else
             {
                 document.getElementById("image1Text").innerHTML = "no name, no description";
             }
-            
             for(var a=0; a<data.length; a++)
             {
+                document.getElementById("image1").style.display = "initial";
+                document.getElementById("image"+(a+1)+"Thumb").style.display = "initial";
                 $("#image"+(a+1)).attr("src", image_[a] + albumId+"&photo_owner_id="+owner);
                 $("#image"+(a+1)+"Thumb").attr("src", image_[a] + albumId+"&photo_owner_id="+owner);
                 var idText = "image".concat(a+1).concat("Text");
                 imageText[a] = document.getElementById(idText);
+                imageText[a].innerHTML = data[a].photoName+" "+data[a].description;
             }
             for(var a=10-(10-data.length); a<10; a++)
             {
-                $("#image"+(a+1)).attr("src", "");
-                $("#image"+(a+1)+"Thumb").attr("src", "");
                 document.getElementById("image"+(a+1)).style.display = "none";
                 document.getElementById("image"+(a+1)+"Thumb").style.display = "none";
+                imageText[a].innerHTML = "";
             }
         }
-    }; 
+    };
         
     var all = document.getElementsByClassName("background");
     for (var i = 0; i < all.length; i++)
     {
       all[i].style.display = "block";
-    }    
+    }  
 }
 
 var slideIndex = 1;
@@ -53,7 +54,8 @@ function plusDivs(n)
 function currentDiv(n)
 {
     showDivs(slideIndex = n);
-    if(data!==null)
+    /*
+    if(data!==null && data.length>0)
     {
         for(var i=0; i<data.length; i++)
         {
@@ -62,8 +64,9 @@ function currentDiv(n)
     }
     else
     {
-        console.log("sorry its null");
+        imageText[i].innerHTML = "ultimate mortal kombat 3";
     }
+    */
 }
 function showDivs(n)
 {
@@ -81,7 +84,8 @@ function showDivs(n)
        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
     }
     x[slideIndex-1].style.display = "block";        
-    dots[slideIndex-1].className += " w3-opacity-off";      
+    dots[slideIndex-1].className += " w3-opacity-off";
+
     //show caption text
     var y = document.getElementsByClassName("mySlidesText");
     var dots = document.getElementsByClassName("demo");
@@ -89,7 +93,7 @@ function showDivs(n)
     if (n < 1) {slideIndex = y.length;};
     for (i = 0; i < y.length; i++)
     {
-       y[i].style.display = "none";
+        y[i].style.display = "none";
     }
     y[slideIndex-1].style.display = "block";    
 }
