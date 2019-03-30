@@ -64,25 +64,25 @@
     <div class="background">
         <div class="w3-content" style="max-width:800px">
             <img id="image1" class="mySlides" src=""  style="width:100%">
-            <p id="image1Text" class="mySlidesText">Caption Text</p>
+            <p id="image1Text" class="mySlidesText"></p>
             <img id="image2" class="mySlides" src=""  style="width:100%">
-            <p id="image2Text" class="mySlidesText">Caption Text</p>
+            <p id="image2Text" class="mySlidesText"></p>
             <img id="image3" class="mySlides" src=""  style="width:100%">
-            <p id="image3Text" class="mySlidesText">Caption Text</p>
+            <p id="image3Text" class="mySlidesText"></p>
             <img id="image4" class="mySlides" src=""  style="width:100%">
-            <p id="image4Text" class="mySlidesText">Caption Text</p>
+            <p id="image4Text" class="mySlidesText"></p>
             <img id="image5" class="mySlides" src=""  style="width:100%">
-            <p id="image5Text" class="mySlidesText">Caption Text</p>
+            <p id="image5Text" class="mySlidesText"></p>
             <img id="image6" class="mySlides" src=""  style="width:100%">
-            <p id="image6Text" class="mySlidesText">Caption Text</p>
+            <p id="image6Text" class="mySlidesText"></p>
             <img id="image7" class="mySlides" src=""  style="width:100%">
-            <p id="image7Text" class="mySlidesText">Caption Text</p>
+            <p id="image7Text" class="mySlidesText"></p>
             <img id="image8" class="mySlides" src=""  style="width:100%">
-            <p id="image8Text" class="mySlidesText">Caption Text</p>
+            <p id="image8Text" class="mySlidesText"></p>
             <img id="image9" class="mySlides" src=""  style="width:100%">
-            <p id="image9Text" class="mySlidesText">Caption Text</p>
+            <p id="image9Text" class="mySlidesText"></p>
             <img id="image10" class="mySlides" src="" style="width:100%">  
-            <p id="image10Text" class="mySlidesText">Caption Text</p>
+            <p id="image10Text" class="mySlidesText"></p>
             <br>
             <button type="button" id="deletePhotoBtn">Delete this image</button>
             <br>  
