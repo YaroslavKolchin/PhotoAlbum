@@ -22,7 +22,7 @@
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
     </head>
     <body>
-        <div id="header">																																																																																<div class="inner_copy"><a href="http://www.greatdirectories.org/categories/arts-directories/">free art directories list</a><a href="http://www.bestfreetemplates.org/categories/artworks/">artworks templates</a></div>
+        <div id="header">																																																																																
             <div id="inside_header">
                 <a href="index.html"><img src="../images/title.jpg" alt="" width="211" height="69" /></a><br />																																																																																																								
                 <ul>

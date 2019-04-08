@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
     </head>
     <body>
-        <div id="header">																																																																																<div class="inner_copy"><a href="http://www.greatdirectories.org/categories/arts-directories/">free art directories list</a><a href="http://www.bestfreetemplates.org/categories/artworks/">artworks templates</a></div>
+        <div id="header">																																																																															
             <div id="inside_header">
                 <a href="index.html"><img src="../images/title.jpg" alt="" width="211" height="69" /></a><br />																																																																																																								
                 <ul id="menu">
@@ -28,18 +28,5 @@
         <div id="content">
             
         </div>
-        <div id="footer">
-            <div id="inside_footer">
-                <ul id="bottom_menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="index2.html">Gallery</a></li>
-                    <li><a href="index3.html">About Me</a></li>
-                    <li><a href="index3.html">Video</a></li>
-                    <li><a href="index3.html">Partners</a></li>
-                    <li><a href="index3.html">Guest-Book</a></li>
-                    <li><a href="index3.html">Contact Me</a></li>
-                </ul>
-            </div>
-	</div>
     </body>
 </html>
