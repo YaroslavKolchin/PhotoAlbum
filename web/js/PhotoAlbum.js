@@ -5,7 +5,7 @@ function openAlbum(albumId)
     var xhr = new XMLHttpRequest();
     xhr.open('GET', image+'?albumId='+albumId, true);
     xhr.send(null);
-    xhr.onreadystatechange = function() 
+    xhr.onreadystatechange = function()
     {
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) 
         {
@@ -13,6 +13,7 @@ function openAlbum(albumId)
             if(data!==null && data.length>0)
             {
                 document.getElementById("image1").style.display = "initial";
+                document.getElementById("image1Text").style.display="block";
             }
             else
             {
@@ -20,13 +21,20 @@ function openAlbum(albumId)
             }
             for(var a=0; a<data.length; a++)
             {
-                document.getElementById("image1").style.display = "initial";
+                document.getElementById("image"+(a+1)+"Thumb").style.display = "none";
                 document.getElementById("image"+(a+1)+"Thumb").style.display = "initial";
                 $("#image"+(a+1)).attr("src", image_[a] + albumId+"&photo_owner_id="+owner);
                 $("#image"+(a+1)+"Thumb").attr("src", image_[a] + albumId+"&photo_owner_id="+owner);
                 var idText = "image".concat(a+1).concat("Text");
                 imageText[a] = document.getElementById(idText);
                 imageText[a].innerHTML = data[a].photoName+" "+data[a].description;
+                if(a>0)
+                    imageText[a].style.display = "none";
+                if(document.getElementById("image"+(a+1)).style.display === "block")
+                {
+                    document.getElementById("image"+(a+1)).style.display = "none";                    
+                    document.getElementById("image"+(a+1)+"Text").style.display="none";
+                }                                 
             }
             for(var a=10-(10-data.length); a<10; a++)
             {
@@ -34,14 +42,23 @@ function openAlbum(albumId)
                 document.getElementById("image"+(a+1)+"Thumb").style.display = "none";
                 imageText[a].innerHTML = "";
             }
+            if(data===null || data.length===0)
+            {
+                document.getElementById("deletePhotoBtn").style.display = "none";
+            }
+            else
+            {
+                document.getElementById("deletePhotoBtn").style.display = "initial";
+            }
         }
     };
         
     var all = document.getElementsByClassName("background");
     for (var i = 0; i < all.length; i++)
     {
-      all[i].style.display = "block";
-    }  
+        all[i].style.display = "block";
+    }
+    
 }
 
 var slideIndex = 1;
@@ -73,17 +90,17 @@ function showDivs(n)
     var i;
     var x = document.getElementsByClassName("mySlides");
     var dots = document.getElementsByClassName("demo");
-    if (n > x.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = x.length}
+    if (n > x.length) {slideIndex = 1;}
+    if (n < 1) {slideIndex = x.length;}
     for (i = 0; i < x.length; i++)
     {
        x[i].style.display = "none";
     }
+    x[slideIndex-1].style.display = "block"; 
     for (i = 0; i < dots.length; i++)
     {
        dots[i].className = dots[i].className.replace(" w3-opacity-off", "");
-    }
-    x[slideIndex-1].style.display = "block";        
+    }           
     dots[slideIndex-1].className += " w3-opacity-off";
 
     //show caption text
