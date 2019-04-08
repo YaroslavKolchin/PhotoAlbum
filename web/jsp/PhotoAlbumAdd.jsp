@@ -78,11 +78,11 @@ button:hover {
     }
 }
 </style>
-<div id="content">																																																																																																																																																																																																																																																																																																																	<div class="inner_copy"><a href="http://www.bestfreetemplates.info/flash.php">free flash templates</a><a href="http://www.beautifullife.info/industrial-design/st-valentines-day-gift-ideas/">st. valentine's day ideas</a></div>																																																																																																																																																																																																																																																																																																																					
+<div id="content">
     <div id="wrapper1">
         <div class="about">
             <form onsubmit="return valSubmit()" action="../AlbumAdd" style="border:1px solid #ccc" method="post">
-                <h1>Create album</h1>
+                <h1>Add album</h1>
                 <br>
                 <label style="float:left" for="album"><b>Name</b></label>
                 <input type="text" placeholder="Enter album name" name="album_name" id="nameId" required>

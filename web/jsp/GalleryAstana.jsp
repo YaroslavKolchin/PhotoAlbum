@@ -5,7 +5,7 @@
 --%>
 
 <jsp:include page="../MasterPage/Header.jsp" />
-<div id="content">																																																																																																									<div class="inner_copy"><a href="http://www.bestfreetemplates.info/flash.php">free flash templates</a><a href="http://www.beautifullife.info/industrial-design/st-valentines-day-gift-ideas/">st. valentine's day ideas</a></div>
+<div id="content">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../slider.css">
 <style>
