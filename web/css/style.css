@@ -136,7 +136,7 @@ text-decoration:none
 .about a:visited{text-decoration:none}
 .about a:hover{text-decoration:underline}
 #wrapper2{
-width:1000px;
+width:75%;
 margin:0 auto;
 padding:20px 0 0 0;
 }
@@ -241,17 +241,6 @@ padding:0 5px
 #pages #active_page{
 text-decoration:none;
 color:#1DDFDF
-}
-.inner_copy{
-border:0;
-color:#fff;
-float:right;
-width:0.09%!important;
-margin:-100px;
-overflow:hidden;
-line-height:0px;
-padding:0px;
-font-size:11px
 }
 .mySlidesText{
     color: #f2f2f2; 
