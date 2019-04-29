@@ -13,11 +13,11 @@ public class Photo {
     public int photoId;
     public int photoOwnerId;
     public int photoAlbumId;
-   public String photoName;
-   public String dateTaken;
-   public String description;
-   public String dateUpload;
-   public String filePath;
+    public String photoName;
+    public String dateTaken;
+    public String description;
+    public String dateUpload;
+    public String filePath;
 
     public int getPhotoId() {
         return photoId;

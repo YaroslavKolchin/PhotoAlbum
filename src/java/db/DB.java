@@ -5,6 +5,7 @@
  */
 package db;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -38,7 +39,7 @@ public class DB {
         while (rs.next()) {
              rows = rs.getInt(1);
         }
-        System.out.println("rows: "+rows);
+        //System.out.println("rows: "+rows);
         if (!connection.isClosed())
         {
             connection.close();
@@ -89,7 +90,7 @@ public class DB {
         String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
         String user = "albums_admin";
         String pass = "alBUM_2018";
-            System.out.println("int owner "+own);
+        //    System.out.println("int owner "+own);
         Class.forName(driver);
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         String query = " insert into ALBUMS ( album_owner_id,album_name,album_description,album_date_create,album_path)"
@@ -168,7 +169,7 @@ public class DB {
         Statement stmt = connection.createStatement();
         String query = "SELECT album_name,album_description,album_date_create FROM ALBUMS WHERE album_owner_id='"+owner+"'";
         ResultSet rs = stmt.executeQuery(query);
-        System.out.println("myalbums");
+        //System.out.println("myalbums");
         while (rs.next()) 
         {
             name = rs.getString("album_name");
@@ -209,7 +210,7 @@ public class DB {
             query = "SELECT album_id, album_name FROM ALBUMS LEFT JOIN PHOTO ON ALBUMS.album_id = PHOTO.photo_album_id WHERE ALBUMS.album_owner_id='"+owner+"'GROUP BY ALBUMS.album_id HAVING COUNT(ALBUMS.album_id) < 10";
         
         ResultSet rs = stmt.executeQuery(query);
-          System.out.println("myalbums");
+          //System.out.println("myalbums");
         while (rs.next()) {
              id=rs.getInt("album_id");
              name = rs.getString("album_name");            
@@ -269,44 +270,48 @@ public class DB {
     }
     
     public ArrayList <Photo> dbPhotoInfo(String albumId) throws Exception, SQLException  {
-      String name="a";
-      String des="b";
-      
-      ArrayList <Photo> photoList=new ArrayList<Photo>();
-      try
-      {
-        String driver = "com.mysql.jdbc.Driver";
-        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
-        String user = "albums_admin";
-        String pass = "alBUM_2018";
-        Class.forName(driver);
-        Connection connection = DriverManager.getConnection(connectionString, user, pass);
-        Statement stmt = connection.createStatement();
-        String query = "SELECT * FROM PHOTO WHERE photo_album_id='"+albumId+"'";
-        ResultSet rs = stmt.executeQuery(query);
-        System.out.println("myalbums");
-        while (rs.next()) 
+        String id="";
+        String name="";
+        String des="";
+        String path = "";
+        ArrayList <Photo> photoList=new ArrayList<Photo>();
+        try
         {
-            Photo photo = new Photo();
-            name = rs.getString("photo_name");
-            des = rs.getString("photo_description");
-             
-            photo.setDescription(des);
-            photo.setPhotoName(name);
-            photoList.add(photo);
-            //System.out.println("photo name "+name+" photo decscription "+des+" photo date create "+data+" photo path "+path);
+            String driver = "com.mysql.jdbc.Driver";
+            String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+            String user = "albums_admin";
+            String pass = "alBUM_2018";
+            Class.forName(driver);
+            Connection connection = DriverManager.getConnection(connectionString, user, pass);
+            Statement stmt = connection.createStatement();
+            String query = "SELECT * FROM PHOTO WHERE photo_album_id='"+albumId+"'";
+            ResultSet rs = stmt.executeQuery(query);
+            //System.out.println("myalbums");
+            while (rs.next()) 
+            {
+                Photo photo = new Photo();
+                id = rs.getString("photo_id");
+                name = rs.getString("photo_name");
+                des = rs.getString("photo_description");
+                path = rs.getString("photo_path");
+                
+                photo.setPhotoId(Integer.parseInt(id));
+                photo.setDescription(des);
+                photo.setPhotoName(name);
+                photo.setFilePath(path);
+                photoList.add(photo);
+                //System.out.println("photo name "+name+" photo decscription "+des+" photo date create "+data+" photo path "+path);
+            }
+            if (!connection.isClosed())
+            {
+                connection.close();
+            }
         }
-        if (!connection.isClosed())
+        catch(Exception exception)
         {
-            connection.close();
+            exception.printStackTrace();
         }
-
-      }
-      catch(Exception exception)
-      {
-          exception.printStackTrace();
-      }
-      return photoList;
+        return photoList;
   }
     //select count(photo_id),photo_album_id,a.album_name from PHOTO p,ALBUMS a where a.album_id=p.photo_album_id group by p.photo_album_id having count(photo_id)>1;
 public Map<Integer,String> dbShowPhotos(String owner) throws Exception, SQLException 
@@ -327,10 +332,11 @@ public Map<Integer,String> dbShowPhotos(String owner) throws Exception, SQLExcep
         Connection connection = DriverManager.getConnection(connectionString, user, pass);
         Statement stmt = connection.createStatement();
         String query = "SELECT album_id, album_name FROM PHOTO right JOIN ALBUMS on PHOTO.photo_album_id = ALBUMS.album_id group by ALBUMS.album_id HAVING count(PHOTO.photo_id)>=0 OR NOT EXISTS (SELECT 1 FROM PHOTO WHERE photo_owner_id='"+owner+"' PHOTO.photo_album_id=ALBUMS.album_id)";
-           System.out.println("query "+query);
+        //System.out.println("query "+query);
         ResultSet rs = stmt.executeQuery(query);
-          System.out.println("myalbums");
-        while (rs.next()) {
+        //System.out.println("myalbums");
+        while (rs.next())
+        {
              id=rs.getInt("album_id");
              name = rs.getString("album_name");            
              // System.out.println("name Album="+name);
@@ -370,10 +376,11 @@ public int dbDeleteAlbum(String album_id) throws Exception, SQLException
         int par=Integer.parseInt(album_id);
         preparedStmt.setInt(1, (int)par);
         preparedStmt.executeUpdate();
-        System.out.println("query "+query);
+        //System.out.println("query "+query);
         ResultSet rs = stmt.executeQuery(query);
-          System.out.println("myalbums");
-        while (rs.next()) {
+        //System.out.println("myalbums");
+        while (rs.next()) 
+        {
              id=rs.getInt("album_id");
              name = rs.getString("album_name");            
              // System.out.println("name Album="+name);
@@ -390,46 +397,59 @@ public int dbDeleteAlbum(String album_id) throws Exception, SQLException
       }
         return a;
     }
-public int dbDeletePhoto(String photo_id) throws Exception, SQLException 
+public boolean dbDeletePhoto(String photo_id) throws Exception, SQLException 
     {   
-        int a=1;
+        boolean deleted=false;
+        String path = "";
         try
-       {
-        /*java.util.Date dt = new java.util.Date();
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(dt);*/
-        String driver = "com.mysql.jdbc.Driver";
-        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
-        String user = "albums_admin";
-        String pass = "alBUM_2018";
-        Class.forName(driver);
-        String name="a";
-        int id=1;
-        Connection connection = DriverManager.getConnection(connectionString, user, pass);
-        Statement stmt = connection.createStatement();
-        String query = "DELETE from PHOTO where album_id=?;";
-        PreparedStatement preparedStmt = connection.prepareStatement(query);      
-        int par=Integer.parseInt(photo_id);
-        preparedStmt.setInt(1, (int)par);
-        preparedStmt.executeUpdate();
-        System.out.println("query "+query);
-        ResultSet rs = stmt.executeQuery(query);
-          System.out.println("myalbums");
-        while (rs.next()) {
-             id=rs.getInt("album_id");
-             name = rs.getString("album_name");            
-             // System.out.println("name Album="+name);
-        }             
-        if (!connection.isClosed())
-        {
-            connection.close();
+        {        
+            String driver = "com.mysql.jdbc.Driver";
+            String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+            String user = "albums_admin";
+            String pass = "alBUM_2018";
+            Class.forName(driver);
+            Connection connection = DriverManager.getConnection(connectionString, user, pass);        
+            //step 1. get path of the photo in the server          
+            Statement stmt1 = connection.createStatement();
+            String query1 = "SELECT photo_name, photo_path FROM PHOTO WHERE photo_id='"+photo_id+"'";
+            ResultSet rs = stmt1.executeQuery(query1);
+            while (rs.next()) 
+            {
+                Photo photo = new Photo();
+                path = System.getProperty("user.home")+rs.getString("photo_path")+rs.getString("photo_name");
+                
+                //System.out.println("full path="+path);                
+                photo.setFilePath(path);                
+            }                                
+            //step 2. delete photo file in the server
+            File file = new File(path); 
+          
+            if(file.delete()) 
+            { 
+                //step 3. delete photo record in db
+                //System.out.println("photo was successfully deleted from the server"); 
+                String query = "DELETE from PHOTO where photo_id=?;";
+                //System.out.println("query "+query);
+                PreparedStatement preparedStmt = connection.prepareStatement(query);      
+                int par=Integer.parseInt(photo_id);
+                preparedStmt.setInt(1, (int)par);
+                preparedStmt.executeUpdate();  
+                //System.out.println("photo was successfully deleted from the database");
+                deleted = true;
+            } 
+            else
+            { 
+                System.out.println("Failed to delete the file"); 
+            }           
+            if (!connection.isClosed())
+            {
+                connection.close();
+            }
         }
-
-      }
-      catch(Exception exception)
-      {
-          exception.printStackTrace();
-      }
-        return a;
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        return deleted;
     }
 }
