@@ -69,11 +69,11 @@ public class AlbumDataServlet extends HttpServlet {
         request.setCharacterEncoding(encoding);
         response.setCharacterEncoding(encoding);
         String albumId = request.getParameter("albumId");
-        System.out.println("album data servlet is called from js "+albumId);
+        //System.out.println("album data servlet is called from js "+albumId);
         DB db = new DB();
         try
         {   
-            System.out.println("test");
+            //System.out.println("test");
             ArrayList<Photo> photoList = db.dbPhotoInfo(albumId);
            
             /*

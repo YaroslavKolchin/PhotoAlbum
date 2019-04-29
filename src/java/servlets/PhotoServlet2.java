@@ -77,7 +77,7 @@ public class PhotoServlet2 extends HttpServlet {
         if(listOfFiles.length > 1 && listOfFiles.length <= 10)
         {
             //System.out.println("2A");
-            System.out.println("file path and name" + PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[1].getName());
+            //System.out.println("file path and name" + PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[1].getName());
             FileInputStream fis = new FileInputStream(PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[1].getName());
             BufferedInputStream bin = new BufferedInputStream(fis);  
             BufferedOutputStream bout = new BufferedOutputStream(stream);  

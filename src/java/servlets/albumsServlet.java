@@ -79,10 +79,10 @@ public class albumsServlet extends HttpServlet {
         int id=1;
         if(session.getAttribute("album_owner_id")!=null)
         {
-            System.out.println("session "+session.getAttribute("album_owner_id").toString());
+            //System.out.println("session "+session.getAttribute("album_owner_id").toString());
             owner = session.getAttribute("album_owner_id").toString();
         }
-        System.out.println("owner "+owner);
+        //System.out.println("owner "+owner);
         boolean show = true;
         
         String pageName = "/jsp/PhotoAddtest.jsp";
@@ -97,18 +97,18 @@ public class albumsServlet extends HttpServlet {
             DB d = new DB();            
             try 
             {
-                System.out.println("success "+owner);
+                //System.out.println("success "+owner);
                 albumNamesMap = d.dbOwnerAlbums(owner, show);
                 /*
-                Set<Integer> key =  albumNamesMap.keySet();
-                Iterator<Integer> it = key.iterator();             
-                if(key.size()>1)
-                {
-                    while(it.hasNext())
+                    Set<Integer> key =  albumNamesMap.keySet();
+                    Iterator<Integer> it = key.iterator();             
+                    if(key.size()>1)
                     {
-                        System.out.println("album list id"+it.next()+"; name: "+albumNamesMap.get(it.next()));
+                        while(it.hasNext())
+                        {
+                            System.out.println("album list id"+it.next()+"; name: "+albumNamesMap.get(it.next()));
+                        }
                     }
-                }
                 */
             }
             catch (Exception ex)
@@ -118,18 +118,16 @@ public class albumsServlet extends HttpServlet {
         }
         else
         {
-            System.out.println("created");    
+            //System.out.println("created");    
         }        
         //System.out.println("GET MM");
-        //String albums = "test album 2018";
-          
+        //String albums = "test album 2018";         
         request.setAttribute("album_owner_id", owner);  
         //System.out.println("albumNamesMap:"+albumNamesMap);
         request.setAttribute("albums", albumNamesMap);
         ServletContext sc = this.getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher(pageName);
-        rd.include(request, response); 
-        
+        rd.include(request, response);         
     }
 
     /**

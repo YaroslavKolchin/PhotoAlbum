@@ -69,7 +69,7 @@ public class PhotoServlet extends HttpServlet {
         ArrayList <Photo> photoList = new ArrayList<>(); 
          
         
-        String result = "1";
+        String result = "";
         String albumId = request.getParameter("albumId");
         /*
         HttpSession session = request.getSession(true);
@@ -79,13 +79,11 @@ public class PhotoServlet extends HttpServlet {
             albumId = session.getAttribute("albumId").toString();
         }
         */
-        System.out.println("albumId "+albumId);
         if(albumId!=null)
         {
             DB d = new DB();            
             try 
             {
-                System.out.println("success "+albumId);
                 photoList = d.dbPhotoInfo(albumId); 
                 for (int i = 0; i < photoList.size(); i++)
             {

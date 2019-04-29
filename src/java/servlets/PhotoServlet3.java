@@ -72,11 +72,11 @@ public class PhotoServlet3 extends HttpServlet {
         ServletOutputStream stream = response.getOutputStream();
         String userDirectory=System.getProperty("user.home");
         File PhotoDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+albumId);
-        System.out.println("thisServlet= "+thisServlet);           
+        //System.out.println("thisServlet= "+thisServlet);           
         File[] listOfFiles = PhotoDirectory.listFiles();
         if(listOfFiles.length > 2 && listOfFiles.length <= 10)
         {
-            System.out.println("file path and name" + PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[2].getName());
+            //System.out.println("file path and name" + PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[2].getName());
             FileInputStream fis = new FileInputStream(PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[2].getName());
             BufferedInputStream bin = new BufferedInputStream(fis);  
             BufferedOutputStream bout = new BufferedOutputStream(stream);  

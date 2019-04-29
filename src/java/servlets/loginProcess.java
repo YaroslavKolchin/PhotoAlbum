@@ -79,7 +79,7 @@ public class loginProcess extends HttpServlet {
          email=request.getParameter("email");       
         if(request.getParameter("password")!=null)
             pass=request.getParameter("password");
-        System.out.println("email "+email+" password "+pass);
+        //System.out.println("email "+email+" password "+pass);
         if(email.length()>2 && pass.length()>4)
         {
             DB d=new DB();       

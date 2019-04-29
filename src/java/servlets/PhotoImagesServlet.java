@@ -87,15 +87,11 @@ public class PhotoImagesServlet extends HttpServlet {
         }
         String userDirectory=System.getProperty("user.home");
         File PhotoDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+albumId);
-        System.out.println("test 89");           
         File[] listOfFiles = PhotoDirectory.listFiles();
-        System.out.println("test 90");
         for (int i = 0; i < listOfFiles.length; i++)
         {
-            System.out.println("test 91 "+i);
             if (listOfFiles[i].isFile())
             {
-                System.out.println("File " + listOfFiles[i].getName());
                 FileInputStream fis = new FileInputStream(listOfFiles[i].getName());
                 BufferedInputStream bin = new BufferedInputStream(fis);  
                 BufferedOutputStream bout = new BufferedOutputStream(stream);  
@@ -113,7 +109,6 @@ public class PhotoImagesServlet extends HttpServlet {
                 System.out.println("Directory " + listOfFiles[i].getName());
             }                
         }
-        System.out.println("test 90");
         stream.close();        
         //processRequest(request, response);
     }

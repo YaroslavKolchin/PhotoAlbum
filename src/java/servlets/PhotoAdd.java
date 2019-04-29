@@ -73,8 +73,8 @@ public class PhotoAdd extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
-       request.setAttribute("message", "hello");
+        
+        request.setAttribute("message", "hello");
         processRequest(request, response);
     }
 

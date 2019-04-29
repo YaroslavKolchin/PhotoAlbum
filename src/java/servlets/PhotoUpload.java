@@ -108,22 +108,23 @@ public class PhotoUpload extends HttpServlet
     {
         String name="";
         if(request.getParameter("photo_name")!=null)
-         name=request.getParameter("photo_name");
+            name=request.getParameter("photo_name");
         String description = "";
         if(request.getParameter("photo_description")!=null)
             description=request.getParameter("photo_description");
         String photoAlbum="";
         photoAlbum=request.getParameter("albums");
         Part image=request.getPart("f");
-        String fileName = Paths.get(image.getSubmittedFileName()).getFileName().toString();
         
+        //String fileName = Paths.get(image.getSubmittedFileName()).getFileName().toString();
+        String fileName = name;
         HttpSession session = request.getSession(true);
-        System.out.println("name: "+name+"; description: "+description+"; album: "+photoAlbum+"; file name: "+fileName );
+        //System.out.println("name: "+name+"; description: "+description+"; album: "+photoAlbum+"; file name: "+fileName );
 
         String owner = "1";
         if(session.getAttribute("album_owner_id")!=null)
         {
-            System.out.println("session: "+session.getAttribute("album_owner_id").toString());
+            //System.out.println("session: "+session.getAttribute("album_owner_id").toString());
             owner = session.getAttribute("album_owner_id").toString();
         }
         InputStream fileContent = image.getInputStream();
@@ -133,14 +134,14 @@ public class PhotoUpload extends HttpServlet
         //System.out.println("path "+imageFile.toString() );
         //OutputStream os = new FileOutputStream(imageFile);
         //image.write(fileName);
-        System.out.println("finished uploading a file");
+        //System.out.println("finished uploading a file");
         DB d = new DB();      
         try 
         {
             //String name,String description,String owner,String album
-            System.out.println("success for Photo Upload "+owner);
+            //System.out.println("success for Photo Upload "+owner);
             d.dbPhotoUpload(name,description,owner,photoAlbum);
-            System.out.println("in db Photo Upload ok");
+            //System.out.println("in db Photo Upload ok");
         } 
         catch (Exception ex) 
         {

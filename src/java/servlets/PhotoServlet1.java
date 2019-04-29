@@ -73,11 +73,11 @@ private String encoding = "UTF-8";
         ServletOutputStream stream = response.getOutputStream();
         String userDirectory=System.getProperty("user.home");
         File PhotoDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+albumId);
-        System.out.println("servlet 1 photoDirectory "+PhotoDirectory.getAbsolutePath());
+        //System.out.println("servlet 1 photoDirectory "+PhotoDirectory.getAbsolutePath());
         File[] listOfFiles = PhotoDirectory.listFiles();
         if(listOfFiles.length > 0 && listOfFiles.length <= 10)
         {
-            System.out.println("File: " + listOfFiles[0].getName());
+            //System.out.println("File: " + listOfFiles[0].getName());
             FileInputStream fis = new FileInputStream(PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[0].getName());
             BufferedInputStream bin = new BufferedInputStream(fis);  
             BufferedOutputStream bout = new BufferedOutputStream(stream);  
@@ -93,7 +93,7 @@ private String encoding = "UTF-8";
         else if(listOfFiles.length < 1)
         {
             File NoPhotoDirectory = new File(userDirectory+"/PhotoAlbum/NoPhoto/1.png");
-            System.out.println("servlet 1 if no photos: " + NoPhotoDirectory.getAbsolutePath());
+            //System.out.println("servlet 1 if no photos: " + NoPhotoDirectory.getAbsolutePath());
             FileInputStream fis = new FileInputStream(NoPhotoDirectory.getAbsolutePath());
             BufferedInputStream bin = new BufferedInputStream(fis);  
             BufferedOutputStream bout = new BufferedOutputStream(stream);  

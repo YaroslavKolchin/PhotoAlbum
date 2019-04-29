@@ -6,6 +6,7 @@
 
 package servlets;
 
+import com.google.gson.Gson;
 import db.DB;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -58,20 +59,22 @@ public class DeletePhoto extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        int result =1;
-        String photoId = request.getParameter("photoId");
+        //processRequest(request, response);
+        boolean deleted=false;
+        String photoId = request.getParameter("imageId");
         //System.out.println("album data servlet is called from js "+albumId);
         DB db = new DB();
         try
         {   
-            System.out.println("test delete photo");
-            result= db.dbDeletePhoto(photoId);                
+            System.out.println("delete photo with id="+photoId);
+            deleted = db.dbDeletePhoto(photoId);
         }
         catch (Exception ex) 
         {
             System.out.println("ex: "+ex);
         }
+        response.setContentType("text/plain");
+        response.getWriter().print(deleted);
     }
 
     /**

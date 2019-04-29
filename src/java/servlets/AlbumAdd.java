@@ -103,12 +103,12 @@ public class AlbumAdd extends HttpServlet {
             throws ServletException, IOException {
         long album_id=0;
         String name="";
-       if(request.getParameter("album_name")!=null)
-         name=request.getParameter("album_name");
+        if(request.getParameter("album_name")!=null)
+            name=request.getParameter("album_name");
         String description = "";
         if(request.getParameter("album_description")!=null)
             description=request.getParameter("album_description");
-        System.out.println("name "+name+" description "+description);
+        //System.out.println("name "+name+" description "+description);
         if(name.length()>2 && description.length()>5)
         {
             HttpSession session = request.getSession(true);
@@ -121,9 +121,9 @@ public class AlbumAdd extends HttpServlet {
             DB d = new DB();      
             try 
             {
-                System.out.println("success for add album "+owner);
+                //System.out.println("success for add album "+owner);
                 album_id=d.dbAlbumAdd(name,description,owner);
-                System.out.println("in db album add ok");
+                //System.out.println("in db album add ok");
             } 
             catch (Exception ex) 
             {
@@ -137,7 +137,7 @@ public class AlbumAdd extends HttpServlet {
             File albumDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+album_id);
             if (!ownerDirectory.exists()) 
             {
-                System.out.println("creating username directory: " + ownerDirectory.getName());
+                //System.out.println("creating username directory: " + ownerDirectory.getName());
                 boolean resultOwner = false;
                 try
                 {
@@ -156,8 +156,8 @@ public class AlbumAdd extends HttpServlet {
                  catch(SecurityException se){}       
                  if(resultAlbum && resultOwner) 
                  {  
-                    System.out.println("creating albumDirectory (album and user created) directory: " + albumDirectory.getName());
-                    System.out.println("created 1 "+albumDirectory.getPath()+"exist 1 "+albumDirectory.getAbsolutePath());
+                    //System.out.println("creating albumDirectory (album and user created) directory: " + albumDirectory.getName());
+                    //System.out.println("created 1 "+albumDirectory.getPath()+"exist 1 "+albumDirectory.getAbsolutePath());
                  }
                 }
             }
@@ -172,15 +172,15 @@ public class AlbumAdd extends HttpServlet {
                 catch(SecurityException se){}       
                 if(resultAlbum) 
                 {  
-                    System.out.println("creating albumDirectory (when user is created) directory: " + albumDirectory.getName());
-                    System.out.println("created 2 "+albumDirectory.getPath()+"exist 2 "+albumDirectory.getAbsolutePath());
+                    //System.out.println("creating albumDirectory (when user is created) directory: " + albumDirectory.getName());
+                    //System.out.println("created 2 "+albumDirectory.getPath()+"exist 2 "+albumDirectory.getAbsolutePath());
                 }
             }
          try 
             {
-                System.out.println("success for add album "+owner);
+                //System.out.println("success for add album "+owner);
                 d.dbUpdateAlbumAdd(albumDirectory.getPath(),album_id);
-                System.out.println("in db album add ok");
+                //System.out.println("in db album add ok");
             } 
             catch (Exception ex) 
             {
@@ -189,7 +189,7 @@ public class AlbumAdd extends HttpServlet {
         }
         else
         {
-            System.out.println("album wasn't created");
+            //System.out.println("album wasn't created");
         }
 
         response.sendRedirect("/web/jsp/myAlbums.jsp");
