@@ -71,6 +71,14 @@
         <servlet-name>PhotoServlet</servlet-name>
         <servlet-class>servlets.PhotoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeletePhoto</servlet-name>
+        <servlet-class>servlets.DeletePhoto</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeletePhoto</servlet-name>
+        <url-pattern>/DeletePhoto</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>albumsServlet</servlet-name>
         <url-pattern>/albumsServlet</url-pattern>

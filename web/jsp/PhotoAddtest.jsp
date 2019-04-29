@@ -23,7 +23,6 @@
                         <option value="${Map.key}">
                             <c:out value="${Map.value}"></c:out>
                         </option>
-                        <!--<input type="hidden" name="album_key" value="<%//${Map.key}%>"> -->
                     </c:forEach>
                 </select>
                 <p><input type="file" name="f" id="fileId" multiple="false">

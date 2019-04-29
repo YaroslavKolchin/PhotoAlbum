@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>ERROR PAGE</title>
     </head>
-    <body>
+    <body style="text-align:center">
         <h1>You are not authorized</h1>
         <a href="login.jsp">login page</a>
     </body>
