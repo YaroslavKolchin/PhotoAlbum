@@ -130,13 +130,13 @@ $("#deletePhotoBtn").click(function()
                 var data2 = xhr.responseText;
                 if(data2==="true")
                 {                    
-                    openAlbum(album)
+                    openAlbum(album);
                 };                
-            }
-        }        
+            };
+        };       
     }
     else
     {
-        console.log("you pressed cancel!");
+        console.log("you canceled to delete the photo");
     }
 });

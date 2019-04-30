@@ -14,6 +14,7 @@
     <%    
         String image = response.encodeURL(request.getContextPath()+"/PhotoServlet");
         String deletePhoto = response.encodeURL(request.getContextPath()+"/DeletePhoto");
+        String deleteAlbum = response.encodeURL(request.getContextPath()+"/DeleteAlbum");
         String images[] = new String[10];
         for(int a=0; a<10; a++)
         {
@@ -21,7 +22,6 @@
         }
     %>
     <script type="text/javascript">
-        //var getAlbumServlet = '<%//=getAlbumServlet%>';
         var image   = '<%=image%>';
         var image_ = [];
         <%
@@ -34,6 +34,7 @@
         %>
         var owner = '${album_owner_id}';
         var deletePhoto = '<%=deletePhoto%>';
+        var deleteAlbumVar = '<%=deleteAlbum%>';
     </script>
     <script src="../js/jquery.js"></script>    
     <style>    

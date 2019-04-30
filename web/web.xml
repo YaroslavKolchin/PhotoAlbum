@@ -75,6 +75,14 @@
         <servlet-name>DeletePhoto</servlet-name>
         <servlet-class>servlets.DeletePhoto</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteAlbum</servlet-name>
+        <servlet-class>servlets.DeleteAlbum</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteAlbum</servlet-name>
+        <url-pattern>/DeleteAlbum</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DeletePhoto</servlet-name>
         <url-pattern>/DeletePhoto</url-pattern>
