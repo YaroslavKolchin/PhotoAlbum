@@ -354,48 +354,78 @@ public Map<Integer,String> dbShowPhotos(String owner) throws Exception, SQLExcep
       }
         return albumNamesMap;
     }
-public int dbDeleteAlbum(String album_id) throws Exception, SQLException 
+public boolean dbDeleteAlbum(int albumId) throws Exception, SQLException 
     {   
-        int a=1;
+        boolean deleted = false;     
+        boolean dbPh = false;
+        boolean dbA = false;
+        boolean sPh = false;
+        boolean sA = false;
         try
-       {
-        /*java.util.Date dt = new java.util.Date();
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(dt);*/
-        String driver = "com.mysql.jdbc.Driver";
-        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
-        String user = "albums_admin";
-        String pass = "alBUM_2018";
-        Class.forName(driver);
-        String name="a";
-        int id=1;
-        Connection connection = DriverManager.getConnection(connectionString, user, pass);
-        Statement stmt = connection.createStatement();
-        String query = "DELETE from ALBUMS where album_id=?;";
-        PreparedStatement preparedStmt = connection.prepareStatement(query);      
-        int par=Integer.parseInt(album_id);
-        preparedStmt.setInt(1, (int)par);
-        preparedStmt.executeUpdate();
-        //System.out.println("query "+query);
-        ResultSet rs = stmt.executeQuery(query);
-        //System.out.println("myalbums");
-        while (rs.next()) 
         {
-             id=rs.getInt("album_id");
-             name = rs.getString("album_name");            
-             // System.out.println("name Album="+name);
-        }             
-        if (!connection.isClosed())
-        {
-            connection.close();
+            String driver = "com.mysql.jdbc.Driver";
+            String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+            String user = "albums_admin";
+            String pass = "alBUM_2018";
+            Class.forName(driver);
+            Connection connection = DriverManager.getConnection(connectionString, user, pass);
+            //step 1. Get path to the directory
+            Statement stmt1 = connection.createStatement();
+            String query1 = "SELECT album_path FROM ALBUMS WHERE album_id='"+albumId+"'";
+            ResultSet rs = stmt1.executeQuery(query1);
+            String path = "";
+            while (rs.next()) 
+            {
+                path = rs.getString("album_path");
+            }
+            //step 2. Delete directory with all the files within it
+            //System.out.println("directory path:"+path);
+            File directory = new File(path);
+            String[] files = directory.list();
+            //step 2.1 delete all fles in the directory
+            //and delete all records of the photos of the album in the database
+            if(files.length>0)
+            {
+                for(String file: files)
+                {
+                    //System.out.println("file name:"+path+"/"+file);
+                    File currentFile = new File(path+"/"+file);
+                    sPh = currentFile.delete();
+                }
+                String query2 = "DELETE from PHOTO where photo_album_id=?;";
+                PreparedStatement preparedStmt1 = connection.prepareStatement(query2);
+                preparedStmt1.setInt(1, albumId);
+                if(preparedStmt1.executeUpdate()>0)
+                    dbPh = true;
+            }
+            else
+            {
+                sPh = true;
+                dbPh = true;
+            }
+            //step 2.2 delete the directory and a record of the album in the database
+            if(sPh==true && dbPh==true)
+            {
+                sA = directory.delete();
+                String query3 = "DELETE from ALBUMS where album_id=?;";
+                PreparedStatement preparedStmt2 = connection.prepareStatement(query3);
+                preparedStmt2.setInt(1, albumId);
+                if(preparedStmt2.executeUpdate()>0)
+                    dbA = true;               
+            }
+            if (!connection.isClosed())
+            {
+                connection.close();
+            }
+            if(dbPh==true && dbA == true && sPh == true && sA==true)
+                deleted = true;
         }
-
-      }
-      catch(Exception exception)
-      {
-          exception.printStackTrace();
-      }
-        return a;
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+        //System.out.println("deleted in DB and in the server="+deleted);
+        return deleted;
     }
 public boolean dbDeletePhoto(String photo_id) throws Exception, SQLException 
     {   
@@ -416,9 +446,7 @@ public boolean dbDeletePhoto(String photo_id) throws Exception, SQLException
             while (rs.next()) 
             {
                 Photo photo = new Photo();
-                path = System.getProperty("user.home")+rs.getString("photo_path")+rs.getString("photo_name");
-                
-                //System.out.println("full path="+path);                
+                path = System.getProperty("user.home")+rs.getString("photo_path")+rs.getString("photo_name");      
                 photo.setFilePath(path);                
             }                                
             //step 2. delete photo file in the server

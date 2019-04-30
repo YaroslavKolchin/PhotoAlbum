@@ -9,12 +9,12 @@ package servlets;
 import db.DB;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import packageWeb.Photo;
 
 /**
  *
@@ -59,21 +59,28 @@ public class DeleteAlbum extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
-        int result =1;
-        String albumId = request.getParameter("albumId");
-        //System.out.println("album data servlet is called from js "+albumId);
-        DB db = new DB();
-        try
-        {   
-            System.out.println("test delete album");
-            result= db.dbDeleteAlbum(albumId);                
-        }
-        catch (Exception ex) 
+            throws ServletException, IOException {        
+        boolean deleted = false;
+        int albumId = 0;
+        if(request.getParameter("albumId")!=null)
         {
-            System.out.println("ex: "+ex);
+            albumId = Integer.parseInt(request.getParameter("albumId"));
         }
+        if(albumId>0)
+        {
+            DB db = new DB();
+            try
+            {             
+                deleted = db.dbDeleteAlbum(albumId);                
+            }
+            catch (Exception ex) 
+            {
+                System.out.println("ex: "+ex);
+            }
+        }
+        response.setContentType("text/plain");
+        response.getWriter().print(deleted);        
+        //processRequest(request, response);
     }
 
     /**

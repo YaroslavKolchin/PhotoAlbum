@@ -88,7 +88,7 @@ public class PhotoServlet extends HttpServlet {
                 for (int i = 0; i < photoList.size(); i++)
             {
                 Photo ph=photoList.get(i);
-                System.out.println("photo name "+ph.photoName+" photo des "+ph.description);
+                //System.out.println("photo name "+ph.photoName+" photo des "+ph.description);
             }
             }
             catch (Exception ex)

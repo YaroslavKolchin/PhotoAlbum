@@ -192,7 +192,7 @@ public class AlbumAdd extends HttpServlet {
             //System.out.println("album wasn't created");
         }
 
-        response.sendRedirect("/web/jsp/myAlbums.jsp");
+        response.sendRedirect("/web/jsp/PhotoAdd.jsp");
         /*ServletContext sc = this.getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/myAlbums.jsp");
         rd.include(request, response); */

@@ -73,34 +73,36 @@ public class loginProcess extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException  {
         int rows=0;
-       String email = "";
-       String pass = "";
-       if(request.getParameter("email")!=null)
-         email=request.getParameter("email");       
+        String email = "";
+        String pass = "";
+        if(request.getParameter("email")!=null)
+            email=request.getParameter("email");       
         if(request.getParameter("password")!=null)
             pass=request.getParameter("password");
         //System.out.println("email "+email+" password "+pass);
         if(email.length()>2 && pass.length()>4)
         {
             DB d=new DB();       
-        try {
-              rows=d.dbAuthorisation(email,pass);
+            try 
+            {
+                rows=d.dbAuthorisation(email,pass);
             }
-       catch (Exception ex) {
-            System.out.println("ex: "+ex);
-        }     
-        if(rows!=0)
-        {
-            HttpSession session = request.getSession(true); 
-            session.setAttribute("session","TRUE");
-            session.setAttribute("album_owner_id",rows);
-            response.sendRedirect("jsp/HomePage.jsp");
-        }
-        else
-        {   
-             System.out.println("wrong email or password");
-             response.sendRedirect("jsp/login.jsp");
-        }
+            catch (Exception ex)
+            {
+                System.out.println("ex: "+ex);
+            }     
+            if(rows!=0)
+            {
+                HttpSession session = request.getSession(true); 
+                session.setAttribute("session","TRUE");
+                session.setAttribute("album_owner_id",rows);
+                response.sendRedirect("jsp/HomePage.jsp");
+            }
+            else
+            {   
+                System.out.println("wrong email or password");
+                response.sendRedirect("jsp/login.jsp");
+            }
             processRequest(request, response);
         }
     }
