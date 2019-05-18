@@ -53,7 +53,7 @@
             <c:forEach items="${albums}" var="Map">                
                <tr>
                    <td>
-                        <button style="width:100px" class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)"><c:out value="${Map.value}"></c:out></button>               
+                        <button style="width:200px" class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)"><c:out value="${Map.value}"></c:out></button>               
                    </td> 
                    <td>
                        <input type="image" src="../images/trash_2.png" width="24" height="24" id="deleteAlbumBtn${Map.key}" onclick="deleteAlbum(this.id)">                   
