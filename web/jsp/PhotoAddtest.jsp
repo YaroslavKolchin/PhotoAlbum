@@ -13,9 +13,9 @@
         <form onsubmit="return valSubmit()" action="../PhotoUpload" style="border:1px solid #ccc" method="post" enctype="multipart/form-data">
                 <h1>Add photo</h1>
                 <br>
-                <label style="float:left" for="Name"><b>Name</b></label>                
+                <label style="float:left" for="Name"><b></b></label>                
                 <input type="text" placeholder="Enter photo name" name="photo_name" id="photoId" required>
-                <label for="Description"><b>Description</b></label>
+                <label for="Description"><b></b></label>
                 <input type="text" placeholder="Enter Description " name="photo_description" id="photodesId" required>               
                 <select name="albums" id="chooseId" class="dropdown" style="float:right;">
                     <option value="default">choose album</option>

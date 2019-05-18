@@ -84,10 +84,10 @@ button:hover {
             <form onsubmit="return valSubmit()" action="../AlbumAdd" style="border:1px solid #ccc" method="post">
                 <h1>Add album</h1>
                 <br>
-                <label style="float:left" for="album"><b>Name</b></label>
+                <label style="float:left" for="album"><b></b></label>
                 <input type="text" placeholder="Enter album name" name="album_name" id="nameId" required>
 
-                <label for="description"><b>Description</b></label>
+                <label for="description"><b></b></label>
                 <input type="text" placeholder="Enter Description " name="album_description" id="desId" required>
 
                 <div class="clearfix">

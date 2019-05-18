@@ -11,6 +11,8 @@
 <div id="content" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/sideMenu.css">
+    <!--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
     <%    
         String image = response.encodeURL(request.getContextPath()+"/PhotoServlet");
         String deletePhoto = response.encodeURL(request.getContextPath()+"/DeletePhoto");
@@ -51,13 +53,14 @@
             <c:forEach items="${albums}" var="Map">                
                <tr>
                    <td>
-                        <a class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)" href="#">               
-                            <c:out value="${Map.value}"></c:out>
-                        </a> 
+                        <button style="width:100px" class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)"><c:out value="${Map.value}"></c:out></button>               
                    </td> 
                    <td>
-                       <button type="button" id="deleteAlbumBtn${Map.key}" onclick="deleteAlbum(this.id)">Delete this album</button>                   
+                       <input type="image" src="../images/trash_2.png" width="24" height="24" id="deleteAlbumBtn${Map.key}" onclick="deleteAlbum(this.id)">                   
                    </td>
+                   <td>
+                       <input type="image" src="../images/pencil_2.png" width="24" height="24">  
+                   </td>   
                </tr>
             </c:forEach>
         </table>
@@ -66,7 +69,7 @@
         <div id="wrapper2">
             <div class="background">
                 <div class="w3-content" style="max-width:75%">
-                    <img id="image1" class="mySlides" src=""  style="width:100%">
+                    <img id="image1" class="mySlides" src="">
                     <p id="image1Text" class="mySlidesText"></p>
                     <p hidden id="image1Id"></p>
                     <img id="image2" class="mySlides" src=""  style="width:100%">
@@ -97,7 +100,9 @@
                     <p id="image10Text" class="mySlidesText"></p>
                     <p hidden id="image10Id"></p>
                     <br>
-                    <button type="button" id="deletePhotoBtn">Delete this image</button>
+                        <input type="image" src="../images/trash.png" width="24" height="24" id="deletePhotoBtn">
+                        <input type="image" src="../images/addphoto.png" width="24" height="24" id="addPhotoBtn">
+                        <input type="image" src="../images/pencil_1.png" width="24" height="24" id="editPhotoBtn">
                     <br>  
                     <br>                   
                     <div class="w3-row-padding w3-section">

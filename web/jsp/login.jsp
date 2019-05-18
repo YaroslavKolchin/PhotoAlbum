@@ -13,9 +13,10 @@
         <div class="login-page">
             <div class="form">
                 <form action="../loginProcess" method="post">  
-                    Email:<input type="text" name="email"/><br/><br/>  
-                    Password:<input type="password" name="password"/><br/><br/>  
-                    <input type="submit" value="login"/>
+                   <input type="text" placeholder="Enter Email " name="email"/><br/><br/>  
+                   <input type="password" placeholder="Enter Password " name="password"/><br/><br/>  
+                   <input type="submit" id="loginBtn" value="login"/>
+                    
                 </form> 
                 <a href="/web/jsp/Registration.jsp">registration</a>
             </div>
