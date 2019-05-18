@@ -367,6 +367,7 @@ public boolean dbDeleteAlbum(int albumId) throws Exception, SQLException
             String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
             String user = "albums_admin";
             String pass = "alBUM_2018";
+            String userDirectory=System.getProperty("user.home");
             Class.forName(driver);
             Connection connection = DriverManager.getConnection(connectionString, user, pass);
             //step 1. Get path to the directory
@@ -380,7 +381,7 @@ public boolean dbDeleteAlbum(int albumId) throws Exception, SQLException
             }
             //step 2. Delete directory with all the files within it
             //System.out.println("directory path:"+path);
-            File directory = new File(path);
+            File directory = new File(userDirectory+path);
             String[] files = directory.list();
             //step 2.1 delete all fles in the directory
             //and delete all records of the photos of the album in the database
@@ -389,7 +390,7 @@ public boolean dbDeleteAlbum(int albumId) throws Exception, SQLException
                 for(String file: files)
                 {
                     //System.out.println("file name:"+path+"/"+file);
-                    File currentFile = new File(path+"/"+file);
+                    File currentFile = new File(userDirectory+path+"/"+file);
                     sPh = currentFile.delete();
                 }
                 String query2 = "DELETE from PHOTO where photo_album_id=?;";

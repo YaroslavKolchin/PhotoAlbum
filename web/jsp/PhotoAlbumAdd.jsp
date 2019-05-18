@@ -77,6 +77,16 @@ button:hover {
        width: 100%;
     }
 }
+#myButton{
+font-size: 28px;
+margin: 0 0 12px;
+padding: 6px;
+}
+#createId{
+font-size: 28px;
+margin: 0 0 12px;
+padding: 6px;
+}
 </style>
 <div id="content">
     <div id="wrapper1">
@@ -85,14 +95,14 @@ button:hover {
                 <h1>Add album</h1>
                 <br>
                 <label style="float:left" for="album"><b></b></label>
-                <input type="text" placeholder="Enter album name" name="album_name" id="nameId" required>
+                <input type="text" maxlength="15" placeholder="Enter album name" name="album_name" id="nameId" required>
 
                 <label for="description"><b></b></label>
                 <input type="text" placeholder="Enter Description " name="album_description" id="desId" required>
 
                 <div class="clearfix">
                   <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
-                  <button type="submit" class="signupbtn">Create</button>
+                  <button type="submit" class="signupbtn" id="createId">Create</button>
                 </div>
                 <span id="errorId" style="color:red"></span>
             </form>

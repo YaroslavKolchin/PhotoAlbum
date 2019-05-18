@@ -76,6 +76,16 @@ button:hover {
        width: 100%;
     }
 }
+#myButton{
+font-size: 28px;
+margin: 0 0 12px;
+padding: 6px;
+}
+#submitId{
+font-size: 28px;
+margin: 0 0 12px;
+padding: 6px;
+}
 </style>
 <div id="content">
     <div id="wrapper1">
@@ -83,14 +93,14 @@ button:hover {
             <form onsubmit="return validationSubmit()" action="../registrationProcess" style="border:1px solid #ccc" method="post">
                 <h1>Sign Up</h1>
                 <br>
-                <label style="float:left" for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" id="emailId" required>
+                <label style="float:left" for="email"><b></b></label>
+                <input type="text" maxlength="15" placeholder="Enter Email" name="email" id="emailId" required>
 
-                <label for="password"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="password" id="passwordId" required>
+                <label for="password"><b></b></label>
+                <input type="password" maxlength="20" placeholder="Enter Password" name="password" id="passwordId" required>
 
-                <label for="psw-repeat"><b>Repeat Password</b></label>
-                <input type="password" placeholder="Repeat Password" name="psw-repeat" id="reppasswordId" required>
+                <label for="psw-repeat"><b></b></label>
+                <input type="password" maxlength="20" placeholder="Repeat Password" name="psw-repeat" id="reppasswordId" required>
 
                 <div class="clearfix">
                     <button type="button" class="cancelbtn" id="myButton" >Cancel</button>

@@ -7,6 +7,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../MasterPage/Header.jsp" />
+<style>
+    #myButton{
+font-size: 28px;
+margin: 0 0 12px;
+padding: 6px;
+}
+#uploadId{
+font-size: 28px;
+margin: 0 0 12px;
+padding: 6px;
+}
+</style>>
 <div id="content">
     <div id="wrapper1">
         <div class="about">
@@ -14,7 +26,7 @@
                 <h1>Add photo</h1>
                 <br>
                 <label style="float:left" for="Name"><b></b></label>                
-                <input type="text" placeholder="Enter photo name" name="photo_name" id="photoId" required>
+                <input type="text" maxlength="15" placeholder="Enter photo name" name="photo_name" id="photoId" required>
                 <label for="Description"><b></b></label>
                 <input type="text" placeholder="Enter Description " name="photo_description" id="photodesId" required>               
                 <select name="albums" id="chooseId" class="dropdown" style="float:right;">
@@ -28,7 +40,7 @@
                 <p><input type="file" name="f" id="fileId" multiple="false">
                 <div class="clearfix">
                   <button type="button" class="cancelbtn" id="myButton" >Cancel</button>
-                  <button type="submit" class="signupbtn">Upload</button>
+                  <button type="submit" class="signupbtn" id="uploadId">Upload</button>
                 </div>
                 <span id="errorId" style="color:red"></span>
         </form>

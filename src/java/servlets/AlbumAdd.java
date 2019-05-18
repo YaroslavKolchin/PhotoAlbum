@@ -135,6 +135,7 @@ public class AlbumAdd extends HttpServlet {
             //File theDir = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+name);
             File ownerDirectory = new File(userDirectory+"/PhotoAlbum/"+owner);
             File albumDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+album_id);
+            String dbPath="/PhotoAlbum/"+owner+"/"+album_id;
             if (!ownerDirectory.exists()) 
             {
                 //System.out.println("creating username directory: " + ownerDirectory.getName());
@@ -179,7 +180,7 @@ public class AlbumAdd extends HttpServlet {
          try 
             {
                 //System.out.println("success for add album "+owner);
-                d.dbUpdateAlbumAdd(albumDirectory.getPath(),album_id);
+                d.dbUpdateAlbumAdd(dbPath,album_id);
                 //System.out.println("in db album add ok");
             } 
             catch (Exception ex) 
