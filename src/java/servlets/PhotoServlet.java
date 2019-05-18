@@ -10,6 +10,8 @@ import db.DB;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.RequestDispatcher;
@@ -86,10 +88,21 @@ public class PhotoServlet extends HttpServlet {
             {
                 photoList = d.dbPhotoInfo(albumId); 
                 for (int i = 0; i < photoList.size(); i++)
-            {
-                Photo ph=photoList.get(i);
-                //System.out.println("photo name "+ph.photoName+" photo des "+ph.description);
-            }
+                {
+                    Photo photo = photoList.get(i);
+                }                
+                if (photoList.size() > 1)
+                {
+                    Collections.sort(photoList, new Comparator<Photo>()
+                    {
+                        @Override
+                        public int compare(final Photo photo1, final Photo photo2)
+                        {
+                            int photoName = photo1.getPhotoName().compareTo(photo2.getPhotoName());                                 
+                            return photoName;
+                        }
+                    });
+                }                
             }
             catch (Exception ex)
             {

@@ -18,6 +18,7 @@ import static java.nio.file.Files.newOutputStream;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.nio.file.StandardOpenOption;
+import java.text.SimpleDateFormat;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -117,7 +118,8 @@ public class PhotoUpload extends HttpServlet
         Part image=request.getPart("f");
         
         //String fileName = Paths.get(image.getSubmittedFileName()).getFileName().toString();
-        String fileName = name;
+        String currentTime = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new java.util.Date());
+        String fileName = name+"-"+currentTime;
         HttpSession session = request.getSession(true);
         //System.out.println("name: "+name+"; description: "+description+"; album: "+photoAlbum+"; file name: "+fileName );
 
@@ -126,7 +128,8 @@ public class PhotoUpload extends HttpServlet
         {
             //System.out.println("session: "+session.getAttribute("album_owner_id").toString());
             owner = session.getAttribute("album_owner_id").toString();
-        }
+        }        
+                               
         InputStream fileContent = image.getInputStream();
         File imageFile = new File(System.getProperty("user.home")+"/PhotoAlbum/"+owner+"/"+photoAlbum+"/"+fileName);
         java.nio.file.Files.copy(fileContent, imageFile.toPath(), StandardCopyOption.REPLACE_EXISTING);        
@@ -140,7 +143,7 @@ public class PhotoUpload extends HttpServlet
         {
             //String name,String description,String owner,String album
             //System.out.println("success for Photo Upload "+owner);
-            d.dbPhotoUpload(name,description,owner,photoAlbum);
+            d.dbPhotoUpload(fileName,description,owner,photoAlbum);
             //System.out.println("in db Photo Upload ok");
         } 
         catch (Exception ex) 

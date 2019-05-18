@@ -229,44 +229,44 @@ public class DB {
       }
         return albumNamesMap;
     }
-    public void dbPhotoUpload(String name,String description,String owner,String album) throws Exception, SQLException  {
-
+    public void dbPhotoUpload(String name,String description,String owner,String album) throws Exception, SQLException
+    {
         try
         {
-        java.util.Date dt = new java.util.Date();
-        java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String date = sdf.format(dt);
-        String owner_id=owner;
-        String album_id=album;
-        int own=Integer.parseInt(owner_id);
-        int alb=Integer.parseInt(album_id);
-        String path="/PhotoAlbum/"+owner+"/"+album_id+"/";
-        String driver = "com.mysql.jdbc.Driver";
-        String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
-        String user = "albums_admin";
-        String pass = "alBUM_2018";
-            System.out.println("int owner "+own);
-        Class.forName(driver);
-        Connection connection = DriverManager.getConnection(connectionString, user, pass);
-        String query = " insert into PHOTO ( photo_owner_id,photo_album_id,photo_name,photo_description,photo_date_upload,photo_path)"
-        + " values (?,?,?,?,?,?)";
-        PreparedStatement preparedStmt = connection.prepareStatement(query);
-        preparedStmt.setInt (1, own);
-        preparedStmt.setInt (2, alb);
-        preparedStmt.setString (3, name);
-        preparedStmt.setString (4, description);
-        preparedStmt.setString (5, date);
-        preparedStmt.setString (6, path);
-        preparedStmt.execute();
-        if (!connection.isClosed())
-        {
-            connection.close();
+            java.util.Date dt = new java.util.Date();
+            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String date = sdf.format(dt);
+            String owner_id=owner;
+            String album_id=album;
+            int own=Integer.parseInt(owner_id);
+            int alb=Integer.parseInt(album_id);
+            String path="/PhotoAlbum/"+owner+"/"+album_id+"/";
+            String driver = "com.mysql.jdbc.Driver";
+            String connectionString = "jdbc:mysql://localhost:3306/AlbumsDB";
+            String user = "albums_admin";
+            String pass = "alBUM_2018";
+                System.out.println("int owner "+own);
+            Class.forName(driver);
+            Connection connection = DriverManager.getConnection(connectionString, user, pass);
+            String query = " insert into PHOTO ( photo_owner_id,photo_album_id,photo_name,photo_description,photo_date_upload,photo_path)"
+            + " values (?,?,?,?,?,?)";
+            PreparedStatement preparedStmt = connection.prepareStatement(query);
+            preparedStmt.setInt (1, own);
+            preparedStmt.setInt (2, alb);
+            preparedStmt.setString (3, name);
+            preparedStmt.setString (4, description);
+            preparedStmt.setString (5, date);
+            preparedStmt.setString (6, path);
+            preparedStmt.execute();
+            if (!connection.isClosed())
+            {
+                connection.close();
+            }
         }
-      }
-      catch(Exception exception)
-      {
-          exception.printStackTrace();
-      }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
     }
     
     public ArrayList <Photo> dbPhotoInfo(String albumId) throws Exception, SQLException  {
@@ -457,10 +457,10 @@ public boolean dbDeletePhoto(String photo_id) throws Exception, SQLException
                 //step 3. delete photo record in db
                 //System.out.println("photo was successfully deleted from the server"); 
                 String query = "DELETE from PHOTO where photo_id=?;";
+                int photoIdInt = Integer.parseInt(photo_id);
                 //System.out.println("query "+query);
-                PreparedStatement preparedStmt = connection.prepareStatement(query);      
-                int par=Integer.parseInt(photo_id);
-                preparedStmt.setInt(1, (int)par);
+                PreparedStatement preparedStmt = connection.prepareStatement(query);                
+                preparedStmt.setInt(1, photoIdInt);
                 preparedStmt.executeUpdate();  
                 //System.out.println("photo was successfully deleted from the database");
                 deleted = true;

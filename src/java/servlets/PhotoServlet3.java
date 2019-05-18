@@ -74,6 +74,17 @@ public class PhotoServlet3 extends HttpServlet {
         File PhotoDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+albumId);
         //System.out.println("thisServlet= "+thisServlet);           
         File[] listOfFiles = PhotoDirectory.listFiles();
+        //sort start        
+        for (int i = 0; i < listOfFiles.length-1; i++) 
+            for (int j = 0; j < listOfFiles.length-i-1; j++) 
+                if (listOfFiles[j].compareTo(listOfFiles[j+1])>0) 
+                { 
+                    // swap arr[j+1] and arr[i] 
+                    File temp = listOfFiles[j]; 
+                    listOfFiles[j] = listOfFiles[j+1]; 
+                    listOfFiles[j+1] = temp; 
+                }
+        //sort end
         if(listOfFiles.length > 2 && listOfFiles.length <= 10)
         {
             //System.out.println("file path and name" + PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[2].getName());
@@ -96,7 +107,6 @@ public class PhotoServlet3 extends HttpServlet {
             {
                 i = thisServlet%listOfFiles.length;    
             }
-            System.out.println("File " + PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[i].getName());
             FileInputStream fis = new FileInputStream(PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[i].getName());
             BufferedInputStream bin = new BufferedInputStream(fis);  
             BufferedOutputStream bout = new BufferedOutputStream(stream);  
@@ -112,7 +122,6 @@ public class PhotoServlet3 extends HttpServlet {
         else if(listOfFiles.length < 1)
         {
             File NoPhotoDirectory = new File(userDirectory+"/PhotoAlbum/NoPhoto/1.png");            
-            System.out.println("servlet 3 if no photos: " + NoPhotoDirectory.getAbsolutePath());
             FileInputStream fis = new FileInputStream(NoPhotoDirectory.getAbsolutePath());
             BufferedInputStream bin = new BufferedInputStream(fis);  
             BufferedOutputStream bout = new BufferedOutputStream(stream);  

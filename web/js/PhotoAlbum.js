@@ -115,11 +115,13 @@ $("#deletePhotoBtn").click(function()
     var n = image[slideIndex-1].id.substring(image[slideIndex-1].id.length-1, image[slideIndex-1].id.length);    
     var imageIdName = "image".concat(n).concat("Id");
     var imageId = document.getElementById(imageIdName);
-    //console.log("id="+image[slideIndex-1].id+"; n="+n+"; image text ="+imageText.textContent+"; image id="+imageId.textContent);
-    //var words1 = $('#textAreaID').val();
-    //$('deleteBtn').val("THERE ARE "+wordsInText+" WORDS");
+    var imageSlide = "image".concat(n);
+    var imageThumb = "image".concat(n).concat("Thumb");
+    var imageText = "image".concat(n).concat("Text");
+    //console.log("photo id = "+imageId.textContent+" photo thumb id = "+imageThumb+" image slide "+imageSlide);
     if(confirm("Do you confirm to delete this photo ?"))
-    {        
+    {                        
+        console.log("confirmed");
         var xhr = new XMLHttpRequest();
         xhr.open('GET', deletePhoto+'?imageId='+imageId.textContent, true);
         xhr.send(null);
@@ -129,11 +131,30 @@ $("#deletePhotoBtn").click(function()
             {
                 var data2 = xhr.responseText;
                 if(data2==="true")
-                {                    
-                    openAlbum(album);
-                };                
+                {
+                    document.getElementById(imageSlide).style.display = "none";
+                    document.getElementById(imageThumb).style.display = "none";
+                    document.getElementById(imageText).style.display = "none";
+                    for(var a=0; a<image.length; a++)
+                    {
+                        if(a!==(slideIndex-1))
+                        {
+                            var o = image[a].id.substring(image[a].id.length-1, image[a].id.length);    
+                            var imageName = "image".concat(o);
+                            var imageTitle = "image".concat(o).concat("Text");
+                            //check if it has a src attribute
+                            var srcValue = document.getElementById(imageName).getAttribute("src");
+                            if (srcValue.length>5)
+                            {
+                                document.getElementById(imageTitle).style.display="block";
+                                document.getElementById(imageName).style.display = "block"; 
+                            }  
+                            break;
+                        }
+                    }
+                };
             };
-        };       
+        };        
     }
     else
     {

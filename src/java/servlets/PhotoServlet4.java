@@ -73,9 +73,19 @@ public class PhotoServlet4 extends HttpServlet {
         
         ServletOutputStream stream = response.getOutputStream();
         String userDirectory=System.getProperty("user.home");
-        File PhotoDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+albumId);
-        System.out.println("thisServlet= "+thisServlet);            
+        File PhotoDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+albumId);           
         File[] listOfFiles = PhotoDirectory.listFiles();
+        //sort start        
+        for (int i = 0; i < listOfFiles.length-1; i++) 
+            for (int j = 0; j < listOfFiles.length-i-1; j++) 
+                if (listOfFiles[j].compareTo(listOfFiles[j+1])>0) 
+                { 
+                    // swap arr[j+1] and arr[i] 
+                    File temp = listOfFiles[j]; 
+                    listOfFiles[j] = listOfFiles[j+1]; 
+                    listOfFiles[j+1] = temp; 
+                }
+        //sort end
         if(listOfFiles.length > 3 && listOfFiles.length <= 10)
         {
             System.out.println("File " + PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[3].getName());
@@ -98,7 +108,6 @@ public class PhotoServlet4 extends HttpServlet {
             {
                 i = thisServlet%listOfFiles.length;    
             }
-            System.out.println("File " + PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[i].getName());
             FileInputStream fis = new FileInputStream(PhotoDirectory.getAbsolutePath()+"/"+listOfFiles[i].getName());
             BufferedInputStream bin = new BufferedInputStream(fis);  
             BufferedOutputStream bout = new BufferedOutputStream(stream);  
@@ -114,8 +123,7 @@ public class PhotoServlet4 extends HttpServlet {
         }
         else if(listOfFiles.length < 1)
         {
-            File NoPhotoDirectory = new File(userDirectory+"/PhotoAlbum/NoPhoto/1.png");            
-            System.out.println("servlet 4 if no photos: " + NoPhotoDirectory.getAbsolutePath());
+            File NoPhotoDirectory = new File(userDirectory+"/PhotoAlbum/NoPhoto/1.png");          
             FileInputStream fis = new FileInputStream(NoPhotoDirectory.getAbsolutePath());
             BufferedInputStream bin = new BufferedInputStream(fis);  
             BufferedOutputStream bout = new BufferedOutputStream(stream);  

@@ -75,6 +75,17 @@ private String encoding = "UTF-8";
         File PhotoDirectory = new File(userDirectory+"/PhotoAlbum/"+owner+"/"+albumId);
         //System.out.println("servlet 1 photoDirectory "+PhotoDirectory.getAbsolutePath());
         File[] listOfFiles = PhotoDirectory.listFiles();
+        //sort start        
+        for (int i = 0; i < listOfFiles.length-1; i++) 
+            for (int j = 0; j < listOfFiles.length-i-1; j++) 
+                if (listOfFiles[j].compareTo(listOfFiles[j+1])>0) 
+                { 
+                    // swap arr[j+1] and arr[i] 
+                    File temp = listOfFiles[j]; 
+                    listOfFiles[j] = listOfFiles[j+1]; 
+                    listOfFiles[j+1] = temp; 
+                }
+        //sort end  
         if(listOfFiles.length > 0 && listOfFiles.length <= 10)
         {
             //System.out.println("File: " + listOfFiles[0].getName());
