@@ -5,9 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="../MasterPage/Header.jsp" />
-<p style="text-align: center; color: white">Click on the album name and photo icons below</p>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<jsp:include page="../MasterPage/Header.jsp" /> 
+
+<c:if test="${fn:length(albums) gt 0}">
+    <p style="text-align: center; color: white">Click on the album name and photo icons below</p>        
+</c:if> 
+
+
 <div id="content" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="../css/sideMenu.css">
@@ -53,7 +59,7 @@
             <c:forEach items="${albums}" var="Map">                
                <tr>
                    <td>
-                        <button style="width:200px" class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)"><c:out value="${Map.value}"></c:out></button>               
+                        <button style="width:100px" class="linkClass" id="${Map.key}" onclick="openAlbum(this.id)"><c:out value="${Map.value}"></c:out></button>               
                    </td> 
                    <td>
                        <input type="image" src="../images/trash_2.png" width="24" height="24" id="deleteAlbumBtn${Map.key}" onclick="deleteAlbum(this.id)">                   
@@ -101,7 +107,7 @@
                     <p hidden id="image10Id"></p>
                     <br>
                         <input type="image" src="../images/trash.png" width="24" height="24" id="deletePhotoBtn">
-                        <input type="image" src="../images/addphoto.png" width="24" height="24" id="addPhotoBtn">
+                        <!--<input type="image" src="../images/addphoto.png" width="24" height="24" id="addPhotoBtn">-->
                         <input type="image" src="../images/pencil_1.png" width="24" height="24" id="editPhotoBtn">
                     <br>  
                     <br>                   

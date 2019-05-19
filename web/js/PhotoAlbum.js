@@ -59,6 +59,14 @@ function openAlbum(albumId)
             {
                 document.getElementById("deletePhotoBtn").style.display = "initial";
             }
+            if(data===null || data.length===0)
+            {
+                document.getElementById("editPhotoBtn").style.display = "none";
+            }
+            else
+            {
+                document.getElementById("editPhotoBtn").style.display = "initial";
+            }
         }
     };
         

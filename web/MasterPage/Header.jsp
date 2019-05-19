@@ -18,6 +18,7 @@
 <html>
     <head>
         <title>Photo Album</title>
+        <link rel="shortcut icon" href="../images/album.ico" />
         <link rel="stylesheet" type="text/css" href="../css/menuCss.css" />
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
     </head>
