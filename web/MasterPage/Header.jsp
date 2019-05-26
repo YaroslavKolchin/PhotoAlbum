@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : Header
     Created on : Jun 16, 2018, 4:53:25 AM
     Author     : talgat
@@ -7,8 +7,9 @@
     if(session.getAttribute("session")== null || session.getAttribute("session").equals("") || !session.getAttribute("session").equals("TRUE"))
     {
         System.out.println("SESSION: "+session.getAttribute("session"));
+        //response.sendRedirect("../jsp/error.jsp");
 %>
-        <jsp:forward page="..jsp/error.jsp" />
+        <jsp:forward page="../jsp/error.jsp" />
 <%         
     }
 %>
@@ -20,29 +21,20 @@
         <title>Photo Album</title>
         <link rel="shortcut icon" href="../images/album.ico" />
         <link rel="stylesheet" type="text/css" href="../css/menuCss.css" />
+        <link rel="stylesheet" type="text/css" href="../css/pageStructure.css" />
+        <!--
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        -->
     </head>
     <body>
         <div id="header">																																																																																
             <div id="inside_header">
-                <a href="index.html"><img src="../images/title.jpg" alt="" width="211" height="69" /></a><br />																																																																																																								
+                <!--<a href="index.html"><img src="../images/title.jpg" alt="" width="211" height="69" /></a><br /> -->
                 <ul>
-                    <li><a href="HomePage.jsp">Home</a></li>
-                    <li><a href="PhotoAlbumAdd.jsp">Album add</a></li>
-                    <li><a href="PhotoAdd.jsp">Photo add</a></li>
+                    <li><a href="PhotoAlbumAdd.jsp">New Album</a></li>
+                    <li><a href="PhotoAdd.jsp">New Photo</a></li>
                     <li><a href="myAlbums.jsp">My albums</a></li>
                     <li><a href="logout.jsp">Logout</a></li>
                 </ul>
             </div>
 	</div>
-        
-        <!--
-        <ul id="menu">
-                    <li><a href="HomePage.jsp" class="but1_active"><img src="../images/but1.jpg" alt="" width="70" height="47" /></a></li>
-                    <li><a href="Gallery.jsp" class="but2"><img src="../images/but2.jpg"         alt="" width="70" height="47" /></a></li>
-                    <li><a href="PhotoAlbumAdd.jsp" class="but3"><img src="../images/but3.jpg"   alt="" width="70" height="47" /></a></li>
-                    <li><a href="PhotoAdd.jsp" class="but5"><img src="../images/but5.jpg"   alt="" width="70" height="47" /></a></li>
-                    <li><a href="logout.jsp" class="but6"><img src="../images/but6.jpg"          alt="" width="70" height="47" /></a></li>
-                    <li><a href="myAlbums.jsp" class="but7"><img src="../images/but7.jpg"        alt="" width="70" height="47" /></a></li>
-                </ul>
-        -->

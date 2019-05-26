@@ -3,22 +3,23 @@
     Created on : Oct 30, 2018, 8:59:24 PM
     Author     : yaroslav
 --%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../MasterPage/Header.jsp" />
 <style>
-    #myButton{
-font-size: 28px;
-margin: 0 0 12px;
-padding: 6px;
-}
-#uploadId{
-font-size: 28px;
-margin: 0 0 12px;
-padding: 6px;
-}
-</style>>
+    #myButton
+        {
+        font-size: 28px;
+        margin: 0 0 12px;
+        padding: 6px;
+        }
+    #uploadId
+    {
+        font-size: 28px;
+        margin: 0 0 12px;
+        padding: 6px;
+    }
+</style>
 <div id="content">
     <div id="wrapper1">
         <div class="about">
