@@ -37,3 +37,10 @@ li a:hover:not(.active) {
   background-color: #4CAF50;
 }
 
+#inside_header
+{
+    width:560px;
+    margin:0 auto;
+    text-align:center
+}
+

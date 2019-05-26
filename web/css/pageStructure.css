@@ -1,0 +1,85 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : May 26, 2019, 12:22:47 PM
+    Author     : talgat
+*/
+*
+{
+  box-sizing:border-box;
+}
+.leftSideClass
+{
+  padding:20px;
+  float:left;
+  width:20%; /* The width is 20%, by default */
+}
+.centerClass
+{
+  padding:20px;
+  float:left;
+  width:60%; /* The width is 60%, by default */
+}
+.rightSideClass
+{
+  padding:20px;
+  float:left;
+  width:20%; /* The width is 20%, by default */
+}
+/* Use a media query to add a break point at 800px: */
+@media screen and (max-width:800px)
+{
+  .leftSideClass, .centerClass, .rightSideClass
+  {
+    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
+  }
+}
+#w3-content
+{
+    display:    none;
+}
+.w3-content
+{
+    text-align: center;
+}
+
+.mySlides
+{
+    margin:auto;
+}
+
+body
+{
+    background-color:#000000
+}
+
+#wrapper1
+{
+    width:635px;
+    margin:0 auto;
+}
+
+#inside_footer
+{
+    width:635px;
+    margin:0 auto;
+    padding:5px 0 0 0;
+    line-height:17px;
+    
+}
+
+h1 
+{
+  color: white;
+}
+/*
+.mySlides {display:none}
+.demo {cursor:pointer}
+.gallery{display:none}
+.container{color: white;}
+.background{display:none}
+.wrapper2{display:none}
+*/
