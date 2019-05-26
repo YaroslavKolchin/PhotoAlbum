@@ -15,8 +15,9 @@ function openAlbum(albumId)
             data = JSON.parse(xhr.responseText);
             if(data!==null && data.length>0)
             {
-                document.getElementById("image1").style.display = "initial";
+                document.getElementById("image1").style.display = "initial";                
                 document.getElementById("image1Text").style.display="block";
+                document.getElementById("w3-content").style.display = "block";
             }
             else
             {
