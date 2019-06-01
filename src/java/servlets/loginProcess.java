@@ -96,7 +96,7 @@ public class loginProcess extends HttpServlet {
                 HttpSession session = request.getSession(true); 
                 session.setAttribute("session","TRUE");
                 session.setAttribute("album_owner_id",rows);
-                response.sendRedirect("jsp/HomePage.jsp");
+                response.sendRedirect("jsp/myAlbums.jsp");
             }
             else
             {   
