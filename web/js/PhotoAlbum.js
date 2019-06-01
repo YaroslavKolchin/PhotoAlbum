@@ -15,9 +15,9 @@ function openAlbum(albumId)
             data = JSON.parse(xhr.responseText);
             if(data!==null && data.length>0)
             {
-                document.getElementById("image1").style.display = "initial";                
+                document.getElementById("image1").style.display = "initial";
                 document.getElementById("image1Text").style.display="block";
-                document.getElementById("w3-content").style.display = "block";
+                document.getElementById("w3-content").style.display = "block";                
             }
             else
             {
@@ -26,7 +26,7 @@ function openAlbum(albumId)
             for(var a=0; a<data.length; a++)
             {
                 document.getElementById("image"+(a+1)+"Thumb").style.display = "initial";
-                $("#image"+(a+1)).attr("src", image_[a] + albumId+"&photo_owner_id="+owner);
+                $("#image"+(a+1)).attr("src", image_[a] + albumId+"&photo_owner_id="+owner);                
                 $("#image"+(a+1)+"Thumb").attr("src", image_[a] + albumId+"&photo_owner_id="+owner);
                 if(a>=1)
                 {
@@ -44,7 +44,7 @@ function openAlbum(albumId)
                     document.getElementById("image"+(a+1)).style.display = "none";                    
                     document.getElementById("image"+(a+1)+"Text").style.display="none";
                 }
-            }
+            }                            
             for(var a=10-(10-data.length); a<10; a++)
             {
                 document.getElementById("image"+(a+1)).style.display = "none";
@@ -68,14 +68,25 @@ function openAlbum(albumId)
             {
                 document.getElementById("editPhotoBtn").style.display = "initial";
             }
+            var imageOne = document.getElementById("image1");            
+            if(imageOne.naturalWidth>0 && imageOne.naturalHeight>0)
+            {
+                if (imageOne.naturalWidth > imageOne.naturalHeight)
+                {
+                    imageOne.classList.add("horizontal");
+                }
+                else
+                {
+                    imageOne.classList.add("vertical");
+                }
+            }            
         }
-    };
-        
+    };        
     var all = document.getElementsByClassName("background");
     for (var i = 0; i < all.length; i++)
     {
         all[i].style.display = "block";
-    }    
+    }
 }
 
 var slideIndex = 1;
@@ -96,10 +107,24 @@ function showDivs(n)
     var dots = document.getElementsByClassName("demo");
     if (n > x.length) {slideIndex = 1;}
     if (n < 1) {slideIndex = x.length;}
+    
     for (i = 0; i < x.length; i++)
     {
        x[i].style.display = "none";
-    }
+    }    
+        
+    if(x[slideIndex-1].width>0 && x[slideIndex-1].height>0)
+    {
+        if (x[slideIndex-1].width > x[slideIndex-1].height)
+        {
+            x[slideIndex-1].classList.add("horizontal");
+        }
+        else
+        {
+            x[slideIndex-1].classList.add("vertical");
+        }
+    }                
+    
     x[slideIndex-1].style.display = "block"; 
     
     for (i = 0; i < dots.length; i++)

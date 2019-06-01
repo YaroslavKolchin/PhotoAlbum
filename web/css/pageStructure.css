@@ -51,6 +51,18 @@ and open the template in the editor.
     margin:auto;
 }
 
+.vertical
+{
+    width: 360px;
+    height: 480px;
+}
+
+.horizontal
+{
+    width: 640px;
+    height: 480px;
+}
+
 body
 {
     background-color:#000000
@@ -61,14 +73,21 @@ body
     width:635px;
     margin:0 auto;
 }
-
+/*
+#footer
+{
+    position:absolute;
+    bottom:0px;
+    height:60px;
+    width:100%;
+}
+*/
 #inside_footer
 {
     width:635px;
     margin:0 auto;
     padding:5px 0 0 0;
-    line-height:17px;
-    
+    line-height:17px;    
 }
 
 h1 
