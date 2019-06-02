@@ -75,7 +75,8 @@ function openAlbum(albumId)
             {
                 document.getElementById("editPhotoBtn").style.display = "initial";
             }
-            var imageOne = document.getElementById("image1");            
+            var imageOne = document.getElementById("image1");
+            console.log("width:"+imageOne.naturalWidth+"; height:"+imageOne.naturalHeight);
             if(imageOne.naturalWidth>0 && imageOne.naturalHeight>0)
             {
                 if (imageOne.naturalWidth > imageOne.naturalHeight)

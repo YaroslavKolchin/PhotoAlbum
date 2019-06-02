@@ -57,7 +57,7 @@
     </div>
     <div id="centerId" class="centerClass">
         <div id = "w3-content" class="w3-content">
-            <img id="image1" class="mySlides" src="">
+            <img id="image1" class="mySlides" src="" height="480px">
             <p id="image1Text" class="mySlidesText"></p>
             <p hidden id="image1Id"></p>
             <img id="image2" class="mySlides" src="">
