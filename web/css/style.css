@@ -239,11 +239,12 @@ text-decoration:none;
 color:#1DDFDF
 }
 .mySlidesText{
-    color: #f2f2f2; 
+    color: white; 
     font-size: 15px; 
     padding: 8px 12px;
     width: 100%; 
     text-align: center; 
+    
 }
 
 .mySlides

@@ -35,7 +35,14 @@ function openAlbum(albumId)
                 }
                 var idText = "image".concat(a+1).concat("Text");
                 imageText[a] = document.getElementById(idText);
-                imageText[a].innerHTML = data[a].photoName+" "+data[a].description;
+                var photoNvar=[];
+                photoNvar[a]=data[a].photoName;
+                //var photoNvar= data[a].photoName;  
+                var photoNvarLength=photoNvar[a].length-20;
+                var newphotoNvar=photoNvar[a].substring(0,photoNvarLength);
+                console.log("image "+photoNvar+" name "+newphotoNvar );
+                console.log("length "+photoNvar.length+" new length "+newphotoNvar);
+                imageText[a].innerHTML = newphotoNvar+" "+data[a].description;
                 var idImage = "image".concat(a+1).concat("Id");
                 imageId[a] = document.getElementById(idImage);
                 imageId[a].innerHTML = data[a].photoId;
