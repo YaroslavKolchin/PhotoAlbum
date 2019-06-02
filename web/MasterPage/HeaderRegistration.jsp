@@ -9,12 +9,12 @@
 <html>
     <head>
         <title>Photo Album</title>
-        <link rel="shortcut icon" href="../images/album.ico" />
+        <link rel="shortcut icon" href="../images/camera.ico" />
         <link rel="stylesheet" type="text/css" href="../css/pageStructure.css" />
     </head>
     <body>
     <div id="header">																																																																														
         <div id="inside_header">
-            <a href="index.html"><img src="../images/title.jpg" alt="" width="211" height="69" /></a><br />            
+            <a href="index.html"><img src="../images/title.jpg" alt="" width="211" height="69" /></a><br />
         </div>
     </div>
