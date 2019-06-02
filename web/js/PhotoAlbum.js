@@ -40,8 +40,8 @@ function openAlbum(albumId)
                 //var photoNvar= data[a].photoName;  
                 var photoNvarLength=photoNvar[a].length-20;
                 var newphotoNvar=photoNvar[a].substring(0,photoNvarLength);
-                console.log("image "+photoNvar+" name "+newphotoNvar );
-                console.log("length "+photoNvar.length+" new length "+newphotoNvar);
+                //console.log("image "+photoNvar+" name "+newphotoNvar );
+                //console.log("length "+photoNvar.length+" new length "+newphotoNvar);
                 imageText[a].innerHTML = newphotoNvar+" "+data[a].description;
                 var idImage = "image".concat(a+1).concat("Id");
                 imageId[a] = document.getElementById(idImage);
