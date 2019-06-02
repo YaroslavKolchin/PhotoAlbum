@@ -14,22 +14,17 @@
         <div class="login-page">
         
             <div class="form">
-                <form onsubmit="return validationSubmit()" action="../loginProcess" style="border:1px solid #ccc" method="post">
+                <form onsubmit="return validationSubmit()" action="../loginProcess" method="post">
                  
                    <input type="text" placeholder="Enter Email " id="loginEmailId" name="email"/><br/><br/>  
                    <input type="password" placeholder="Enter Password " id="loginPswId" name="password"/><br/><br/>  
                    <input type="submit" id="loginBtn" value="login"/>
-                
-                
                     <a href="/web/jsp/Registration.jsp">sign up</a>
                     <span id="errorId" style="color:red"></span>
                 </form> 
             </div>
             
              <script type="text/javascript">
-    document.getElementById("myButton").onclick = function () {
-        location.href = "/web/jsp/login.jsp";
-    };
     function validationSubmit(){
         console.log("test "+document.getElementById("loginEmailId").value.length);
         if((document.getElementById("loginEmailId").value.length<2 )|| 

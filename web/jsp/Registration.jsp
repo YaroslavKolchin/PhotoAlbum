@@ -90,7 +90,7 @@ padding: 6px;
 <div id="content">
     <div id="wrapper1">
         <div class="about">
-            <form onsubmit="return validationSubmit()" action="../registrationProcess" style="border:1px solid #ccc" method="post">
+            <form onsubmit="return validationSubmit()" style="padding: 0px 10px 0px 10px" action="../registrationProcess" method="post">
                 <h1>Sign Up</h1>
                 <br>
                 <label style="float:left" for="email"><b></b></label>
